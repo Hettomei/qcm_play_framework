@@ -15,6 +15,6 @@
         }
     </ul>
     <h2>Ajouter une question : </h2>
-    @form(routes.QcmController.newQcm()) { @inputText(theForm("question")) @inputText(theForm("reponse")) <input type="submit" value="Create">
+    @form(controllers.admin.routes.QcmController.newQcm()) { @inputText(theForm("question")) @inputText(theForm("reponse")) <input type="submit" value="Create">
     }
 }

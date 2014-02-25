@@ -3,7 +3,11 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                      controllers.QcmController.index()
+
+# QCM
+GET     /qcms                  controllers.QcmController.qcms()
+POST    /qcms                  controllers.QcmController.newQcm()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /assets/*file          controllers.Assets.at(path="/public", file)

@@ -8,4 +8,6 @@ libraryDependencies ++= Seq(
   cache
 )
 
+libraryDependencies += filters
+
 play.Project.playJavaSettings

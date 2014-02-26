@@ -6,13 +6,33 @@
 <h1>QCM ENI</h1>
 
 <h2>@stagiaires.size() stagiaire(s)</h2>
-
-<ul>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Identité</th>
+      <th>Promotion</th>
+    </tr>
+  </thead>
   @for(stagiaire <- stagiaires) {
-    <li>
-      Stagiaire @stagiaire.id : @stagiaire.nom	@stagiaire.prenom Promo : @stagiaire.promotion
-    </li>
-  }
-</ul>
+  <tr>
+    <td> @stagiaire.id </td>
+    <td> @stagiaire.prenom @stagiaire.nom</td>
+    <td> @stagiaire.promotion </td>
+    <td>
+      <div class="row">
+        <div class="col-xs-2">
+          @form(controllers.admin.routes.StagiairesController.delete(stagiaire.id), 'class -> "form-inline") {
+          <button type="submit" class="btn btn-warning">
+            <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+          </button>
+          }
+        </div>
+      </div>
+    </td>
 
+
+  </tr>
+  }
+</table>
 }

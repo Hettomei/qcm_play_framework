@@ -11,7 +11,7 @@ public class StagiairesController extends AdminController {
 		return ok(views.html.admin.Stagiaire.index.render(models.Stagiaire.all(), theForm));
 	}
 
-	public static Result deleteStagiaire(Long id) {
+	public static Result delete(Long id) {
 		models.Stagiaire.delete(id);
 		return redirect(controllers.admin.routes.StagiairesController.index());
 	}

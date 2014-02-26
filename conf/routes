@@ -29,7 +29,7 @@ POST    /admin/questions/:id/delete  controllers.admin.QuestionsController.delet
 # Stagiaires
 GET     /admin                       controllers.admin.AdminController.index()
 GET     /admin/stagiaires            controllers.admin.StagiairesController.index()
-
+POST    /admin/stagiaires/:id/delete controllers.admin.StagiairesController.delete(id:Long)
 
 #provisoire menu
 GET     /admin/qcms                  controllers.admin.ProvisoireController.index()

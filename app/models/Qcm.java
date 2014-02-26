@@ -10,12 +10,11 @@ import javax.persistence.*;
 public class Qcm extends Model {
 	@Id
 	public Long id;
-	
+
 	@Required
 	public String name;
 	@Required
 	public String description;
-
 	@Required
 	public Long numberOfQuestions;
 

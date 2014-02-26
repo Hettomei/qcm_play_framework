@@ -21,8 +21,4 @@ public class Qcm extends Model {
 		return find.all();
 	}
 
-	public static void create(Qcm qcm) {
-		qcm.save();
-	}
-
 }

@@ -6,10 +6,13 @@
 GET     /                           controllers.Application.index()
 GET     /qcms                       controllers.Qcm.index()
 
-# QCM
+##### ADMIB
 GET     /admin                       controllers.admin.AdminController.index()
+
+# QCM
 GET     /admin/qcms                  controllers.admin.QcmController.index()
-POST    /admin/qcms                  controllers.admin.QcmController.create()
+GET     /admin/qcms/new              controllers.admin.QcmController.create()
+POST    /admin/qcms                  controllers.admin.QcmController.save()
 
 POST    /admin/qcms/:id/delete       controllers.admin.QcmController.delete(id:Long)
 

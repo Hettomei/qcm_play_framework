@@ -1,11 +1,11 @@
-@(qcms: List[models.Qcm], theForm: Form[models.Qcm])
+@(qcms: List[models.Qcm])
 @import helper._
-@import helper.twitterBootstrap._
 
 @mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menu("manageTest")} {
 <h1>QCM ENI</h1>
 
 <h1>@qcms.size() qcm(s)</h1>
+<a href="@controllers.admin.routes.QcmController.create" class="btn btn-primary">Créer une question</a>
 
 <table class="table table-hover">
   <thead>
@@ -21,18 +21,27 @@
     <td> @qcm.id </td>
     <td> @qcm.question </td>
     <td> @qcm.reponse </td>
-    <td><span class="glyphicon glyphicon-edit" title="Editer"></span> | @form(controllers.admin.routes.QcmController.delete(qcm.id)) {
-      <button type="submit" class="btn danger">
-        <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
-      </button>
-    }</td>
+    <td>
+      <div class="row">
+        <div class="col-xs-2">
+          @form(controllers.admin.routes.QcmController.delete(qcm.id), 'class -> "form-inline", 'role -> "form") {
+          <button type="submit" class="btn btn-default">
+            <span class="glyphicon glyphicon-edit" title="Supprimer"></span>
+          </button>
+          }
+        </div>
+        <div class="col-xs-2">
+          @form(controllers.admin.routes.QcmController.delete(qcm.id), 'class -> "form-inline") {
+          <button type="submit" class="btn btn-warning">
+            <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+          </button>
+          }
+        </div>
+      </div>
+    </td>
 
 
   </tr>
   }
 </table>
-<h2>Ajouter une question : </h2>
-@form(controllers.admin.routes.QcmController.create()) { @inputText(theForm("question"),'_showConstraints -> false) @inputText(theForm("reponse"),'_showConstraints -> false)
-    <input type="submit" value="Create">
-  }
 }

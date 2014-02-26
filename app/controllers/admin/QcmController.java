@@ -8,17 +8,19 @@ public class QcmController extends AdminController {
 	static Form<models.Qcm> theForm = Form.form(models.Qcm.class);
 
 	public static Result index() {
-		return ok(views.html.admin.Qcm.index.render(models.Qcm.all(), theForm));
+		return ok(views.html.admin.Qcm.index.render(models.Qcm.all()));
 	}
 
 	public static Result create() {
+		return ok(views.html.admin.Qcm.create.render(theForm));
+	}
+
+	public static Result save() {
 		Form<models.Qcm> filledForm = theForm.bindFromRequest();
 		if(filledForm.hasErrors()) {
-			return badRequest(
-					views.html.admin.Qcm.index.render(models.Qcm.all(), filledForm)
-					);
+			return badRequest(views.html.admin.Qcm.create.render(filledForm));
 		} else {
-			models.Qcm.create(filledForm.get());
+			filledForm.get().save();
 			return redirect(controllers.admin.routes.QcmController.index());
 		}
 	}

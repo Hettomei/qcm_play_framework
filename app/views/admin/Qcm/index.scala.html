@@ -1,21 +1,18 @@
-@(qcms: List[models.Qcm], theForm: Form[models.Qcm])
+@(qcms: List[models.Qcm])
 @import helper._
 @import helper.twitterBootstrap._
 
 @mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menu("manageTest")} {
 <h1>QCM ENI</h1>
-
+<a href="@controllers.admin.routes.QcmController.create"><button type="button" class="btn btn-primary">Nouveau Qcm</button></a>
 <h1>@qcms.size() qcm(s)</h1>
 
 <ul>
   @for(qcm <- qcms) {
     <li>
-      Question @qcm.id : @qcm.question 	 Réponse : @qcm.reponse
+      Question @qcm.id : @qcm.name 	 Réponse : @qcm.description
     </li>
   }
 </ul>
-<h2>Ajouter une question : </h2>
-@form(controllers.admin.routes.QcmController.newQcm()) { @inputText(theForm("question"),'_showConstraints -> false) @inputText(theForm("reponse"),'_showConstraints -> false)
-    <input type="submit" value="Create">
-  }
+
 }

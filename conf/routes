@@ -9,7 +9,13 @@ GET     /qcms                       controllers.Qcm.index()
 # QCM
 GET     /admin                       controllers.admin.AdminController.index()
 GET     /admin/qcms                  controllers.admin.QcmController.index()
-POST    /admin/qcms                  controllers.admin.QcmController.newQcm()
+GET     /admin/qcms/new              controllers.admin.QcmController.create()
+POST    /admin/qcms                  controllers.admin.QcmController.save()
+
+# Questions
+GET     /admin                       controllers.admin.AdminController.index()
+GET     /admin/questions             controllers.admin.QuestionController.index()
+POST    /admin/questions             controllers.admin.QuestionController.newQuestion()
 
 #provisoire menu
 GET     /admin/qcms                  controllers.admin.ProvisoireController.index()

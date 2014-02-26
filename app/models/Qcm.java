@@ -10,10 +10,14 @@ import javax.persistence.*;
 public class Qcm extends Model {
 	@Id
 	public Long id;
+	
 	@Required
-	public String question;
+	public String name;
 	@Required
-	public String reponse;
+	public String description;
+
+	@Required
+	public Long numberOfQuestions;
 
 	public static Finder<Long,Qcm> find = new Finder(Long.class, Qcm.class);
 

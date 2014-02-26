@@ -1,0 +1,18 @@
+@(questions: List[models.Question], theForm: Form[models.Question])
+@import helper._
+@import helper.twitterBootstrap._
+
+@mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menu("manageTest")} {
+<h1>QCM ENI</h1>
+
+<h1>@questions.size() question(s)</h1>
+
+<ul>
+  @for(question <- questions) {
+    <li>
+      Question @question.id : @question.question	 Réponse : @question.reponse
+    </li>
+  }
+</ul>
+
+}

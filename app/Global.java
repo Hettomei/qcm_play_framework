@@ -4,5 +4,4 @@ import play.GlobalSettings;
 import play.api.mvc.EssentialFilter;
 
 public class Global extends GlobalSettings {
-
 }

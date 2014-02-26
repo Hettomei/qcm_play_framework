@@ -1,24 +1,21 @@
-@(qcms: List[Qcm], theForm: Form[Qcm])
+@(qcms: List[models.Qcm], theForm: Form[models.Qcm])
 @import helper._
 @import helper.twitterBootstrap._
 
-
 @main("Bienvenue sur l'interface de gestion des QCM") {
-<div class="container-fluid">
 <h1>QCM ENI</h1>
 
- <h1>@qcms.size() qcm(s)</h1>
+<h1>@qcms.size() qcm(s)</h1>
 
-    <ul>
-        @for(qcm <- qcms) {
-            <li>
-               Question @qcm.id : @qcm.question 	 Réponse : @qcm.reponse
-            </li>
-        }
-    </ul>
-    <h2>Ajouter une question : </h2>
-    @form(controllers.admin.routes.QcmController.newQcm()) { @inputText(theForm("question"),'_showConstraints -> false) @inputText(theForm("reponse"),'_showConstraints -> false) 
+<ul>
+  @for(qcm <- qcms) {
+    <li>
+      Question @qcm.id : @qcm.question 	 Réponse : @qcm.reponse
+    </li>
+  }
+</ul>
+<h2>Ajouter une question : </h2>
+@form(controllers.admin.routes.QcmController.newQcm()) { @inputText(theForm("question"),'_showConstraints -> false) @inputText(theForm("reponse"),'_showConstraints -> false)
     <input type="submit" value="Create">
-    }
-</div>
+  }
 }

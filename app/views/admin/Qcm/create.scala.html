@@ -2,12 +2,11 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-@mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menu("manageTest")} {
+@mainAdmin(){@tags.menu("manageTest")} {
 <h1>Nouveau Qcm</h1>
 
-<h2>Ajouter un nouveau qcm : </h2>
-@form(controllers.admin.routes.QcmController.save()) { 
-	@inputText(theForm("name"),'_showConstraints -> false) 
+@form(controllers.admin.routes.QcmController.save()) {
+	@inputText(theForm("name"),'_showConstraints -> false)
 	@inputText(theForm("description"),'_showConstraints -> false)
 	@inputText(theForm("numberOfQuestions"),'_showConstraints -> false)
     <input type="submit" value="Create">

@@ -14,18 +14,11 @@ public class Question extends Model {
 	public String question;
 	@Required
 	public String reponse;
-	
+
 	public static Finder<Long,Question> find = new Finder(Long.class, Question.class);
 
 	public static List<Question> all() {
 		return find.all();
 	}
 
-	public static void create(Question q) {
-		q.save();
-	}
-
-	public static void delete(Long id) {
-		find.ref(id).delete();
-	}
 }

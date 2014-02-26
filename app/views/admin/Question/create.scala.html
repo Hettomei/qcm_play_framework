@@ -1,0 +1,14 @@
+@(theForm: Form[models.Question])
+@import helper._
+@import helper.twitterBootstrap._
+
+@mainAdmin(){@tags.menu("manageQuestion")} {
+
+<h1>Nouvelle Question</h1>
+
+@form(controllers.admin.routes.QuestionsController.save()) {
+@inputText(theForm("question"),'_showConstraints -> false)
+@inputText(theForm("reponse"),'_showConstraints -> false)
+<input type="submit" value="Créer">
+}
+}

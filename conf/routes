@@ -2,23 +2,33 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+### Home page
 GET     /                           controllers.Application.index()
 GET     /qcms                       controllers.Qcm.index()
 
-# QCM
+######################### Admin
 GET     /admin                       controllers.admin.AdminController.index()
+
+### QCMs
 GET     /admin/qcms                  controllers.admin.QcmController.index()
+
 GET     /admin/qcms/new              controllers.admin.QcmController.create()
 POST    /admin/qcms                  controllers.admin.QcmController.save()
 
-# Questions
-GET     /admin                       controllers.admin.AdminController.index()
-GET     /admin/questions             controllers.admin.QuestionController.index()
-POST    /admin/questions             controllers.admin.QuestionController.newQuestion()
+### Questions
+GET     /admin/questions             controllers.admin.QuestionsController.index()
 
-#provisoire menu
+GET     /admin/questions/new         controllers.admin.QuestionsController.create()
+POST    /admin/questions             controllers.admin.QuestionsController.save()
+
+GET     /admin/questions/:id         controllers.admin.QuestionsController.edit(id:Long)
+POST    /admin/questions/:id         controllers.admin.QuestionsController.update(id:Long)
+POST    /admin/questions/:id/delete  controllers.admin.QuestionsController.delete(id:Long)
+
+### provisional menu
 GET     /admin/qcms                  controllers.admin.ProvisoireController.index()
+
+######################### Admin
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file          controllers.Assets.at(path="/public", file)

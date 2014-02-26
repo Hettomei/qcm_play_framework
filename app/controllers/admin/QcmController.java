@@ -11,7 +11,7 @@ public class QcmController extends AdminController {
 		return ok(views.html.admin.Qcm.index.render(models.Qcm.all(), theForm));
 	}
 
-	public static Result newQcm() {
+	public static Result create() {
 		Form<models.Qcm> filledForm = theForm.bindFromRequest();
 		if(filledForm.hasErrors()) {
 			return badRequest(
@@ -23,8 +23,8 @@ public class QcmController extends AdminController {
 		}
 	}
 
-	public static Result deleteQcm(Long id) {
-		models.Qcm.delete(id);
+	public static Result delete(Long id) {
+		models.Qcm.find.ref(id).delete();
 		return redirect(controllers.admin.routes.QcmController.index());
 	}
 

@@ -25,7 +25,4 @@ public class Qcm extends Model {
 		qcm.save();
 	}
 
-	public static void delete(Long id) {
-		find.ref(id).delete();
-	}
 }

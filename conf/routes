@@ -11,10 +11,17 @@ GET     /admin                       controllers.admin.AdminController.index()
 
 # QCM
 GET     /admin/qcms                  controllers.admin.QcmController.index()
+# new
 GET     /admin/qcms/new              controllers.admin.QcmController.create()
+# save
 POST    /admin/qcms                  controllers.admin.QcmController.save()
 
+#delete
 POST    /admin/qcms/:id/delete       controllers.admin.QcmController.delete(id:Long)
+
+#edit
+GET     /admin/qcms/:id              controllers.admin.QcmController.edit(id:Long)
+POST    /admin/qcms/:id              controllers.admin.QcmController.update(id:Long)
 
 #provisoire menu
 GET     /admin/qcms                  controllers.admin.ProvisoireController.index()

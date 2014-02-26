@@ -7,15 +7,32 @@
 
 <h1>@qcms.size() qcm(s)</h1>
 
-<ul>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Question</th>
+      <th>Reponse</th>
+      <th>admin</th>
+    </tr>
+  </thead>
   @for(qcm <- qcms) {
-    <li>
-      Question @qcm.id : @qcm.question 	 Réponse : @qcm.reponse
-    </li>
+  <tr>
+    <td> @qcm.id </td>
+    <td> @qcm.question </td>
+    <td> @qcm.reponse </td>
+    <td><span class="glyphicon glyphicon-edit" title="Editer"></span> | @form(controllers.admin.routes.QcmController.delete(qcm.id)) {
+      <button type="submit" class="btn danger">
+        <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
+      </button>
+    }</td>
+
+
+  </tr>
   }
-</ul>
+</table>
 <h2>Ajouter une question : </h2>
-@form(controllers.admin.routes.QcmController.newQcm()) { @inputText(theForm("question"),'_showConstraints -> false) @inputText(theForm("reponse"),'_showConstraints -> false)
+@form(controllers.admin.routes.QcmController.create()) { @inputText(theForm("question"),'_showConstraints -> false) @inputText(theForm("reponse"),'_showConstraints -> false)
     <input type="submit" value="Create">
   }
 }

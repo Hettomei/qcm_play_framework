@@ -4,7 +4,8 @@
 	<li class="@(if(active=="newAnswer"){"active"})"><a href="@controllers.admin.routes.ProvisoireController.index">Création d'une nouvelle question</a></li>
 	<li class="@(if(active=="subscribeTest"){"active"})"><a href="@controllers.admin.routes.ProvisoireController.index">Inscription à un test</a></li>
 	<li class="@(if(active=="manageTest"){"active"})"><a href="@controllers.admin.routes.QcmController.index">Gestion des QCM</a></li>
+	<li class="@(if(active=="manageQuestion"){"active"})"><a href="@controllers.admin.routes.QuestionsController.index">Gestion des Questions</a></li>
 	<li class="@(if(active=="results"){"active"})"><a href="@controllers.admin.routes.ProvisoireController.index">Consultations des résultats</a></li>
 	<li class="@(if(active=="archive"){"active"})"><a href="@controllers.admin.routes.ProvisoireController.index">Archive</a></li>
-	
+
 </ul>

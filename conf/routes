@@ -23,6 +23,17 @@ POST    /admin/qcms/:id/delete       controllers.admin.QcmController.delete(id:L
 GET     /admin/qcms/:id              controllers.admin.QcmController.edit(id:Long)
 POST    /admin/qcms/:id              controllers.admin.QcmController.update(id:Long)
 
+
+### Questions
+GET     /admin/questions             controllers.admin.QuestionsController.index()
+
+GET     /admin/questions/new         controllers.admin.QuestionsController.create()
+POST    /admin/questions             controllers.admin.QuestionsController.save()
+
+GET     /admin/questions/:id         controllers.admin.QuestionsController.edit(id:Long)
+POST    /admin/questions/:id         controllers.admin.QuestionsController.update(id:Long)
+POST    /admin/questions/:id/delete  controllers.admin.QuestionsController.delete(id:Long)
+
 #provisoire menu
 GET     /admin/qcms                  controllers.admin.ProvisoireController.index()
 

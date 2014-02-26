@@ -29,7 +29,7 @@ public class QcmController extends AdminController {
 	}
 		
 	public static Result deleteQcm(Long id) {
-		models.Qcm.delete(id);
+		models.Qcm.find.ref(id).delete();
 		return redirect(controllers.admin.routes.QcmController.index());
 	}
 

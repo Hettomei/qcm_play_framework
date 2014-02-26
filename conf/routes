@@ -6,7 +6,7 @@
 GET     /                           controllers.Application.index()
 GET     /qcms                       controllers.Qcm.index()
 
-### ADMIB
+######################### Admin
 GET     /admin                       controllers.admin.AdminController.index()
 
 ### QCMs
@@ -14,11 +14,6 @@ GET     /admin/qcms                  controllers.admin.QcmController.index()
 
 GET     /admin/qcms/new              controllers.admin.QcmController.create()
 POST    /admin/qcms                  controllers.admin.QcmController.save()
-
-GET     /admin/qcms/:id              controllers.admin.QcmController.edit(id:Long)
-POST    /admin/qcms/:id              controllers.admin.QcmController.update(id:Long)
-POST    /admin/qcms/:id/delete       controllers.admin.QcmController.delete(id:Long)
-
 
 ### Questions
 GET     /admin/questions             controllers.admin.QuestionsController.index()
@@ -32,6 +27,8 @@ POST    /admin/questions/:id/delete  controllers.admin.QuestionsController.delet
 
 ### provisional menu
 GET     /admin/qcms                  controllers.admin.ProvisoireController.index()
+
+######################### Admin
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file          controllers.Assets.at(path="/public", file)

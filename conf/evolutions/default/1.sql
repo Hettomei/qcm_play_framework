@@ -5,8 +5,9 @@
 
 create table qcm (
   id                        bigint not null,
-  question                  varchar(255),
-  reponse                   varchar(255),
+  name                      varchar(255),
+  description               varchar(255),
+  number_of_questions       bigint,
   constraint pk_qcm primary key (id))
 ;
 

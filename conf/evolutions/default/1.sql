@@ -18,9 +18,19 @@ create table question (
   constraint pk_question primary key (id))
 ;
 
+create table stagiaire (
+  id                        bigint not null,
+  nom                       varchar(255),
+  prenom                    varchar(255),
+  promotion                 varchar(255),
+  constraint pk_stagiaire primary key (id))
+;
+
 create sequence qcm_seq;
 
 create sequence question_seq;
+
+create sequence stagiaire_seq;
 
 
 
@@ -33,9 +43,13 @@ drop table if exists qcm;
 
 drop table if exists question;
 
+drop table if exists stagiaire;
+
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists qcm_seq;
 
 drop sequence if exists question_seq;
+
+drop sequence if exists stagiaire_seq;
 

@@ -1,0 +1,76 @@
+
+# Stagiaires
+
+stagiaires:
+
+    - !!models.Stagiaire
+        id:            2
+        nom:        Guillaume
+        prenom:        Bort
+        promotion:  DL124
+    
+    - !!models.Stagiaire
+        id:            2
+        nom:          Dantec
+        prenom:     Maxime 
+        promotion:  DL223
+    
+    - !!models.Stagiaire
+        id:            3
+        nom:          Drobi
+        prenom:     Sadek 
+        promotion:  AL154
+    
+    - !!models.Stagiaire
+        id:            4
+        nom:        Loisant
+        prenom:     Erwan 
+        promotion:  CDI102
+    
+# Qcms
+
+qcms:
+
+    - !!models.Qcm
+        id:         1
+        name:       JAVA
+        description:     JAVA framework
+     
+    - !!models.Qcm
+        id:         2
+        name:       C#
+        description:     .NET
+                      
+    - !!models.Qcm
+        id:          3
+        name:        Analyse et conception 
+        description: UML
+     
+questions:
+    
+    - !!models.Question
+        id:         1
+        question:      2 * 2
+        reponse:       4
+                        
+    - !!models.Question
+        id:         2
+        question:      Comment ca marche ?
+        reponse:       on sait pas
+
+    - !!models.Question
+        id:         3
+        question:      A quel age est né Napoléon ?
+        reponse:       12 ans
+
+    - !!models.Question
+        id:         4
+        question:      Qu'est ce qu'un Térébinthe ?
+        reponse:       Nom vulgaire et spécifique du pistachier.
+                        
+    - !!models.Question
+        id:         5
+        question:      Qu'est ce qu'une Tiercerolle ? 
+        reponse:       Barrique contenant 210 litres.
+       
+            

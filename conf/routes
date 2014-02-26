@@ -26,6 +26,12 @@ POST    /admin/questions/:id         controllers.admin.QuestionsController.updat
 POST    /admin/questions/:id/delete  controllers.admin.QuestionsController.delete(id:Long)
 
 ### provisional menu
+# Stagiaires
+GET     /admin                       controllers.admin.AdminController.index()
+GET     /admin/stagiaires            controllers.admin.StagiairesController.index()
+
+
+#provisoire menu
 GET     /admin/qcms                  controllers.admin.ProvisoireController.index()
 
 ######################### Admin

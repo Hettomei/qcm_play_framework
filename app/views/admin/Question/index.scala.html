@@ -2,7 +2,7 @@
 @import helper._
 
 @mainAdmin(){@tags.menu("manageQuestion")} {
-<h1>@questions.size() question(s)</h1>
+@if(questions.size() > 1) {<h2>@questions.size() questions</h2>}else{<h2>@questions.size() question</h2>}
 <a href="@controllers.admin.routes.QuestionsController.create" class="btn btn-primary">Créer une question</a>
 
 <table class="table table-hover">

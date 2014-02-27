@@ -3,7 +3,7 @@
 @import helper.twitterBootstrap._
 
 @mainAdmin(){@tags.menu("manageTest")} {
-<h1>Nouveau Qcm</h1>
+<h1>Edition Qcm</h1>
 
 @form(controllers.admin.routes.QcmController.update(id)) {
 	@inputText(theForm("name"),'_showConstraints -> false)

@@ -14,6 +14,7 @@ create table qcm (
 
 create table question (
   id                        bigint not null,
+  qcm_id                    bigint not null,
   question                  varchar(255),
   reponse                   varchar(255),
   constraint pk_question primary key (id))
@@ -35,6 +36,8 @@ create sequence stagiaire_seq;
 
 alter table qcm add constraint fk_qcm_stagiaire_1 foreign key (stagiaire_id) references stagiaire (id) on delete restrict on update restrict;
 create index ix_qcm_stagiaire_1 on qcm (stagiaire_id);
+alter table question add constraint fk_question_qcm_1 foreign key (qcm_id) references qcm (id) on delete restrict on update restrict;
+create index ix_question_qcm_1 on question (qcm_id);
 
 
 

@@ -17,7 +17,7 @@
   </thead>
   @for(qcm <- qcms) {
   <tr>
-    <td> @qcm.id </td>
+		<td><a href="@controllers.admin.routes.QcmController.show(qcm.id)">@qcm.id</a></td>
     <td> @qcm.name </td>
     <td> @qcm.description </td>
     <td> @qcm.numberOfQuestions </td>

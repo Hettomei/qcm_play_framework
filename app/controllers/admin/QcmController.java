@@ -43,7 +43,7 @@ public class QcmController extends AdminController {
 		}
 		qcmForm.get().update(id);
 		flash("success", "QCM " + qcmForm.get().name + " à été mis à jour");
-		return redirect(controllers.admin.routes.QcmController.index());
+		return redirect(controllers.admin.routes.QcmController.show(id));
 	}
 
 	public static Result show(Long id) {

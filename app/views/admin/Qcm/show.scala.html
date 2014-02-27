@@ -1,7 +1,23 @@
 @(qcm: models.Qcm)
 
 @mainAdmin(){@tags.menu("manageTest")} {
-<h1>Détail du Qcm</h1>
+<div class="row">
+  <div class="col-xs-7">
+    <h1>Détail du Qcm</h1>
+  </div>
+  <div class="col-xs-5">
+    @helper.form(controllers.admin.routes.QcmController.edit(qcm.id), 'class -> "form-inline col-xs-3", 'role -> "form") {
+    <button type="submit" class="btn btn-default">
+      <span class="glyphicon glyphicon-edit" title="Editer"></span>Editer
+    </button>
+    }
+    @helper.form(controllers.admin.routes.QcmController.delete(qcm.id), 'class -> "form-inline col-xs-3") {
+    <button type="submit" class="btn btn-warning">
+      <span class="glyphicon glyphicon-remove" title="Supprimer"></span>Supprimer
+    </button>
+    }
+  </div>
+</div>
 <div class="row">
 	<div class="col-xs-3">
 		<p>Nom : </p>
@@ -16,6 +32,14 @@
 	</div>
 	<div class="col-xs-6">
 		<p>@qcm.description</p>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-3">
+		<p>Nombre de questions :</p>
+	</div>
+	<div class="col-xs-6">
+		<p>@qcm.numberOfQuestions</p>
 	</div>
 </div>
 

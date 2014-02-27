@@ -14,14 +14,13 @@ public class Stagiaire extends Model {
 	public String prenom;
 	@Required
 	public String promotion;
-	@OneToMany(cascade = {CascadeType.PERSIST})
+	@ManyToMany
 	public List<Qcm> qcms;
-		
+
 	public static Finder<Long,Stagiaire> find = new Finder(Long.class, Stagiaire.class);
 
 	public static List<Stagiaire> all() {
 		return find.all();
 	}
 
-	
 }

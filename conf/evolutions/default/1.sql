@@ -4,58 +4,76 @@
 # --- !Ups
 
 create table qcm (
-  id                        bigint not null,
-  stagiaire_id              bigint not null,
+  id                        integer primary key AUTOINCREMENT,
   name                      varchar(255),
   description               varchar(255),
-  number_of_questions       bigint,
-  constraint pk_qcm primary key (id))
+  number_of_questions       integer)
 ;
 
 create table question (
-  id                        bigint not null,
-  qcm_id                    bigint not null,
+  id                        integer primary key AUTOINCREMENT,
+  qcm_id                    integer not null,
   question                  varchar(255),
-  reponse                   varchar(255),
-  constraint pk_question primary key (id))
+  reponse                   varchar(255))
 ;
 
 create table stagiaire (
-  id                        bigint not null,
+  id                        integer primary key AUTOINCREMENT,
   nom                       varchar(255),
   prenom                    varchar(255),
-  promotion                 varchar(255),
-  constraint pk_stagiaire primary key (id))
+  promotion                 varchar(255))
 ;
 
-create sequence qcm_seq;
 
-create sequence question_seq;
+create table qcm_stagiaire (
+  qcm_id                         integer not null,
+  stagiaire_id                   integer not null,
+  constraint pk_qcm_stagiaire primary key (qcm_id, stagiaire_id))
+;
 
-create sequence stagiaire_seq;
+create table question_qcm (
+  question_id                    integer not null,
+  qcm_id                         integer not null,
+  constraint pk_question_qcm primary key (question_id, qcm_id))
+;
 
-alter table qcm add constraint fk_qcm_stagiaire_1 foreign key (stagiaire_id) references stagiaire (id) on delete restrict on update restrict;
-create index ix_qcm_stagiaire_1 on qcm (stagiaire_id);
-alter table question add constraint fk_question_qcm_1 foreign key (qcm_id) references qcm (id) on delete restrict on update restrict;
+create table stagiaire_qcm (
+  stagiaire_id                   integer not null,
+  qcm_id                         integer not null,
+  constraint pk_stagiaire_qcm primary key (stagiaire_id, qcm_id))
+;
+alter table question add constraint fk_question_qcm_1 foreign key (qcm_id) references qcm (id);
 create index ix_question_qcm_1 on question (qcm_id);
 
 
 
+alter table qcm_stagiaire add constraint fk_qcm_stagiaire_qcm_01 foreign key (qcm_id) references qcm (id);
+
+alter table qcm_stagiaire add constraint fk_qcm_stagiaire_stagiaire_02 foreign key (stagiaire_id) references stagiaire (id);
+
+alter table question_qcm add constraint fk_question_qcm_question_01 foreign key (question_id) references question (id);
+
+alter table question_qcm add constraint fk_question_qcm_qcm_02 foreign key (qcm_id) references qcm (id);
+
+alter table stagiaire_qcm add constraint fk_stagiaire_qcm_stagiaire_01 foreign key (stagiaire_id) references stagiaire (id);
+
+alter table stagiaire_qcm add constraint fk_stagiaire_qcm_qcm_02 foreign key (qcm_id) references qcm (id);
+
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+PRAGMA foreign_keys = OFF;
 
-drop table if exists qcm;
+drop table qcm;
 
-drop table if exists question;
+drop table qcm_stagiaire;
 
-drop table if exists stagiaire;
+drop table question;
 
-SET REFERENTIAL_INTEGRITY TRUE;
+drop table question_qcm;
 
-drop sequence if exists qcm_seq;
+drop table stagiaire;
 
-drop sequence if exists question_seq;
+drop table stagiaire_qcm;
 
-drop sequence if exists stagiaire_seq;
+PRAGMA foreign_keys = ON;
 

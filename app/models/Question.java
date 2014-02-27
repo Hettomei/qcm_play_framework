@@ -14,6 +14,8 @@ public class Question extends Model {
 	public String question;
 	@Required
 	public String reponse;
+	@ManyToMany
+	public List<Qcm> qcms;
 
 	public static Finder<Long,Question> find = new Finder(Long.class, Question.class);
 

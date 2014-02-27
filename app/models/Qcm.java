@@ -17,6 +17,8 @@ public class Qcm extends Model {
 	public String description;
 	@Required
 	public Long numberOfQuestions;
+	@ManyToMany
+	public List<Stagiaire> stagiaires;
 
 	//save and delete cascaded
 	@OneToMany(cascade=CascadeType.ALL)

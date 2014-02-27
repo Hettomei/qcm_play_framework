@@ -10,8 +10,6 @@ import java.util.*;
 
 import com.avaje.ebean.*;
 
-
-
 public class Global extends GlobalSettings {
 
 	public void onStart(Application app) {
@@ -31,12 +29,9 @@ public class Global extends GlobalSettings {
 
 				// Insert projects
 				Ebean.save(all.get("qcms"));
-				
-				// Insert tasks
-				Ebean.save(all.get("questions"));
 
 			}
 		}
 
-	} 
+	}
 }

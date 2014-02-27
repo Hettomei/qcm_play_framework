@@ -1,8 +1,4 @@
-
-# Stagiaires
-
 stagiaires:
-
     - !!models.Stagiaire
         nom:        Guillaume
         prenom:        Bort
@@ -23,45 +19,37 @@ stagiaires:
         prenom:     Erwan
         promotion:  CDI102
 
-# Qcms
-
 qcms:
-
     - !!models.Qcm
         name:       JAVA
         description:     JAVA framework
         numberOfQuestions: 10
+        questions:
+            - !!models.Question
+                question:      Qu'est ce qu'un Térébinthe ?
+                reponse:       Nom vulgaire et spécifique du pistachier.
+            - !!models.Question
+                question:      Qu'est ce qu'une Tiercerolle ?
+                reponse:       Barrique contenant 210 litres.
+
 
     - !!models.Qcm
         name:       C#
         description:     .NET
         numberOfQuestions: 10
+        questions:
+            - !!models.Question
+                question:      Qu'est ce que # ?
+                reponse:       sharp
+            - !!models.Question
+                question:      Ping ?
+                reponse:       Pong
 
     - !!models.Qcm
         name:        Analyse et conception
         description: UML
         numberOfQuestions: 10
-
-questions:
-
-    - !!models.Question
-        question:      2 * 2
-        reponse:       4
-
-    - !!models.Question
-        question:      Comment ca marche ?
-        reponse:       on sait pas
-
-    - !!models.Question
-        question:      A quel age est né Napoléon ?
-        reponse:       12 ans
-
-    - !!models.Question
-        question:      Qu'est ce qu'un Térébinthe ?
-        reponse:       Nom vulgaire et spécifique du pistachier.
-
-    - !!models.Question
-        question:      Qu'est ce qu'une Tiercerolle ?
-        reponse:       Barrique contenant 210 litres.
-
-
+        questions:
+            - !!models.Question
+                question:      Apres A il y a ?
+                reponse:       B

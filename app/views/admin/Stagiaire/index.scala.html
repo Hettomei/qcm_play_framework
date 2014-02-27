@@ -2,7 +2,7 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-@mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menu("manageTest")} {
+@mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menu("manageStagiaire")} {
 @if(stagiaires.size() > 1) {<h2>@stagiaires.size() stagiaires</h2>}else{<h2>@stagiaires.size() stagiaire</h2>}
 <table class="table table-hover">
   <thead>
@@ -14,8 +14,8 @@
   </thead>
   @for(stagiaire <- stagiaires) {
   <tr>
-    <td> @stagiaire.id </td>
-    <td> @stagiaire.prenom @stagiaire.nom</td>
+ <td> @stagiaire.id </td>
+    <td> <a href="@controllers.admin.routes.StagiairesController.show(stagiaire.id)">   @stagiaire.prenom @stagiaire.nom</a></td>
     <td> @stagiaire.promotion </td>
     <td>
       <div class="row">

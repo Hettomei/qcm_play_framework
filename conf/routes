@@ -15,6 +15,10 @@ GET     /admin/qcms                  controllers.admin.QcmController.index()
 GET     /admin/qcms/new              controllers.admin.QcmController.create()
 POST    /admin/qcms                  controllers.admin.QcmController.save()
 
+GET     /admin/qcms/:id              controllers.admin.QcmController.edit(id:Long)
+POST    /admin/qcms/:id              controllers.admin.QcmController.update(id:Long)
+POST    /admin/qcms/:id/delete       controllers.admin.QcmController.delete(id:Long)
+
 ### Questions
 GET     /admin/questions             controllers.admin.QuestionsController.index()
 

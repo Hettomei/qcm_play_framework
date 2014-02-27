@@ -29,7 +29,6 @@ public class QuestionsController extends AdminController {
 		return redirect(controllers.admin.routes.QuestionsController.index());
 	}
 
-
 	public static Result save() {
 		Form<models.Question> QuestionForm = Form.form(models.Question.class);
 		Form<models.Question> filledForm = QuestionForm.bindFromRequest();

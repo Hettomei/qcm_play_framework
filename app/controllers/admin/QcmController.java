@@ -3,6 +3,7 @@ package controllers.admin;
 import play.Play;
 import play.mvc.*;
 import play.data.*;
+import java.util.*;
 
 public class QcmController extends AdminController {
 
@@ -72,6 +73,15 @@ public class QcmController extends AdminController {
 
 	public static Result show(Long id) {
 	  models.Qcm qcm = models.Qcm.find.byId(id);
-		return ok(views.html.admin.Qcm.show.render(qcm, models.Question.find.where("id NOT IN (" + qcm.all_question_id() + ")").findList()));
+		return ok(
+				views.html.admin.Qcm.show.render(
+					qcm,
+					allQuestionNotInQcm(qcm)
+					)
+				);
+	}
+
+	public static List allQuestionNotInQcm(models.Qcm qcm){
+		return models.Question.find.where("id NOT IN (" + qcm.allQuestionIds() + ")").findList();
 	}
 }

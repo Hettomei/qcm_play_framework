@@ -28,7 +28,7 @@ public class Qcm extends Model {
 		return find.all();
 	}
 
-	public String all_question_id(){
+	public String allQuestionIds(){
 		StringBuilder sb = new StringBuilder();
 
 		for(Question s: questions) {

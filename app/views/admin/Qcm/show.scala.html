@@ -18,30 +18,11 @@
 		}
 	</div>
 </div>
-<div class="row">
-	<div class="col-xs-3">
-		<p>Nom : </p>
-	</div>
-	<div class="col-xs-6">
-		<p>@qcm.name</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-3">
-		<p>Description : </p>
-	</div>
-	<div class="col-xs-6">
-		<p>@qcm.description</p>
-	</div>
-</div>
-<div class="row">
-	<div class="col-xs-3">
-		<p>Nombre de questions :</p>
-	</div>
-	<div class="col-xs-6">
-		<p>@qcm.numberOfQuestions</p>
-	</div>
-</div>
+
+@tags.property("Id"                  , qcm.id.toString())
+@tags.property("Nom"                 , qcm.name)
+@tags.property("Description"         , qcm.description)
+@tags.property("Nombre de questions" , qcm.numberOfQuestions.toString())
 
 <div class="row">
 	<h3>Questions dans ce QCM</h3>

@@ -27,7 +27,10 @@
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3"><img alt="logo" src="@routes.Assets.at("images/qcm.jpeg")">@menu </div>
+			<div class="col-md-3">
+				<img alt="logo" src="@routes.Assets.at("images/qcm.jpeg")" class="img-responsive">
+				@menu
+			</div>
 			<div class="col-md-9">@content</div>
 		</div>
 

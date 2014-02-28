@@ -72,6 +72,6 @@ public class QcmController extends AdminController {
 
 	public static Result show(Long id) {
 	  models.Qcm qcm = models.Qcm.find.byId(id);
-		return ok(views.html.admin.Qcm.show.render(qcm, models.Question.find.all() ));//where().eq("id", 1).findList()));
+		return ok(views.html.admin.Qcm.show.render(qcm, models.Question.find.where("id NOT IN (" + qcm.all_question_id() + ")").findList()));
 	}
 }

@@ -30,4 +30,18 @@ public class Qcm extends Model {
 		return find.all();
 	}
 
+	public String all_question_id(){
+		StringBuilder sb = new StringBuilder();
+
+		for(Question s: questions) {
+			sb.append(s.id.toString()).append(',');
+		}
+
+		if(sb.length() > 0){
+			sb.deleteCharAt(sb.length()-1); //delete last comma
+		}
+
+		return sb.toString();
+	}
+
 }

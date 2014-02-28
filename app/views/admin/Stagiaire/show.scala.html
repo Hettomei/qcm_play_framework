@@ -37,7 +37,7 @@
 		<td>@qcm.description</td>
 		<td>@qcm.numberOfQuestions</td>
 		<td>
-			@helper.form(controllers.admin.routes.StagiairesController.remove_qcm(qcm.id),
+			@helper.form(controllers.admin.routes.StagiairesController.remove_qcm(stagiaire.id),
 			'class -> "form-inline", 'role -> "form") { 
 			<input type="hidden" name="qcm_id" value="@qcm.id" />
 			<button type="submit" class="btn btn-warning">
@@ -65,9 +65,9 @@
 		<td>@qcm.description</td>
 		<td>@qcm.numberOfQuestions</td>
 		<td>
-			@helper.form(controllers.admin.routes.StagiairesController.add_qcm(qcm.id),
-			'class -> "form-inline", 'role -> "form") { <input type="hidden"
-			name="qcm_id" value="@qcm.id" />
+			@helper.form(controllers.admin.routes.StagiairesController.add_qcm(stagiaire.id),
+			'class -> "form-inline", 'role -> "form") { 
+			<input type="hidden" name="qcm_id" value="@qcm.id" />
 			<button type="submit" class="btn btn-success">
 				<span class="glyphicon glyphicon-plus-sign"></span>
 			</button> }

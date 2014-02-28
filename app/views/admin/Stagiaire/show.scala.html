@@ -1,44 +1,60 @@
-@(stagiaire: models.Stagiaire, theForm: Form[models.Stagiaire])
+@(stagiaire: models.Stagiaire, qcms: List[models.Qcm] ) 
 @import helper._
-@import helper.twitterBootstrap._
-
+@import helper.twitterBootstrap._ 
 @mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menu("manageStagiaire")} {
 <h2>QCM du stagiaire</h2>
 <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Nom</th>
-      <th>Description</th>
-      <th>Questions à passer</th>
-    </tr>
-  </thead>
-@for(qcm <- stagiaire.qcms) {
-  <tr>
-    <td> @qcm.id </td>
-    <td> @qcm.name </td>
-    <td> @qcm.description </td>
-    <td> @qcm.numberOfQuestions </td>
-    <td>
-      <div class="row">
-        <div class="col-xs-3">
-          @form(controllers.admin.routes.QcmController.edit(qcm.id), 'class -> "form-inline", 'role -> "form") {
-          <button type="submit" class="btn btn-default">
-            <span class="glyphicon glyphicon-edit" title="Supprimer"></span>
-          </button>
-          }
-        </div>
-        <div class="col-xs-3">
-          @form(controllers.admin.routes.QcmController.delete(qcm.id), 'class -> "form-inline") {
-          <button type="submit" class="btn btn-warning">
-            <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
-          </button>
-          }
-        </div>
-      </div>
-    </td>
-  </tr>
-  }
-  
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nom</th>
+			<th>Description</th>
+			<th>Questions à passer</th>
+		</tr>
+	</thead>
+	@for(qcm <- stagiaire.qcms) {
+	<tr>
+		<td>@qcm.id</td>
+		<td>@qcm.name</td>
+		<td>@qcm.description</td>
+		<td>@qcm.numberOfQuestions</td>
+		<td>
+			@helper.form(controllers.admin.routes.StagiairesController.remove_qcm(qcm.id),
+			'class -> "form-inline", 'role -> "form") { 
+			<input type="hidden" name="qcm_id" value="@qcm.id" />
+			<button type="submit" class="btn btn-warning">
+				<span class="glyphicon glyphicon-minus-sign"></span>
+			</button> }
+		</td>
+	</tr>
+	}
+
+</table>
+<h3>Autre qcms</h3>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Description</th>
+			<th>Nombre de questions</th>
+			<th>Admin</th>
+		</tr>
+	</thead>
+	@for(qcm <- qcms) {
+	<tr>
+		<td>@qcm.name</td>
+		<td>@qcm.description</td>
+		<td>@qcm.numberOfQuestions</td>
+		<td>
+			@helper.form(controllers.admin.routes.StagiairesController.add_qcm(qcm.id),
+			'class -> "form-inline", 'role -> "form") { <input type="hidden"
+			name="qcm_id" value="@qcm.id" />
+			<button type="submit" class="btn btn-success">
+				<span class="glyphicon glyphicon-plus-sign"></span>
+			</button> }
+		</td>
+	</tr>
+	}
 </table>
 }

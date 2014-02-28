@@ -42,7 +42,8 @@ GET     /admin                       controllers.admin.AdminController.index()
 GET     /admin/stagiaires            controllers.admin.StagiairesController.index()
 GET     /admin/stagiaires/:id/show   controllers.admin.StagiairesController.show(id:Long)
 POST    /admin/stagiaires/:id/delete controllers.admin.StagiairesController.delete(id:Long)
-
+POST    /admin/stagiaires/:id/add_qcm controllers.admin.StagiairesController.add_qcm(id:Long)
+POST    /admin/stagiaires/:id/remove_qcm controllers.admin.StagiairesController.remove_qcm(id:Long)
 #provisoire menu
 GET     /admin/qcms                  controllers.admin.ProvisoireController.index()
 

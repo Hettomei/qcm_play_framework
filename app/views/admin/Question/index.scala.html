@@ -20,12 +20,10 @@
     <td><a href="@controllers.admin.routes.QuestionsController.show(question.id)">@question.question</a></td>
     <td> @question.reponse </td>
     <td>
-      @form(controllers.admin.routes.QuestionsController.edit(question.id), 'class -> "form-inline col-xs-3", 'role -> "form") {
-      <button type="submit" class="btn btn-default">
+      <a href="@controllers.admin.routes.QuestionsController.edit(question.id)" class="btn btn-default">
         <span class="glyphicon glyphicon-edit" title="Supprimer"></span>
-      </button>
-      }
-      @form(controllers.admin.routes.QuestionsController.delete(question.id), 'class -> "form-inline col-xs-3") {
+      </a>
+      @form(controllers.admin.routes.QuestionsController.delete(question.id), 'class -> "form-inline pull-right") {
       <button type="submit" class="btn btn-warning">
         <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
       </button>

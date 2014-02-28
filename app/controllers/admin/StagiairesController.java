@@ -3,6 +3,7 @@ package controllers.admin;
 import models.Stagiaire;
 import play.mvc.*;
 import play.data.*;
+import java.util.*;
 
 public class StagiairesController extends AdminController {
 
@@ -18,7 +19,11 @@ public class StagiairesController extends AdminController {
 
 	public static Result show(Long id) {
 		Stagiaire s = models.Stagiaire.find.ref(id);
-		return ok(views.html.admin.Stagiaire.show.render(s, models.Qcm.all()));
+		return ok(
+				views.html.admin.Stagiaire.show.render(
+					s,
+					models.Qcm.find.where("id NOT IN (" + s.allQcmIds() + ")").findList())
+				);
 	}
 
 	public static Result add_qcm(Long id) {
@@ -44,4 +49,9 @@ public class StagiairesController extends AdminController {
 
 		return redirect(controllers.admin.routes.StagiairesController.show(id));
 	}
+
+	public static List allQcmNotInStagiaire(models.Stagiaire stagiaire){
+		return models.Question.find.where("id NOT IN (" + stagiaire.allQcmIds() + ")").findList();
+	}
+
 }

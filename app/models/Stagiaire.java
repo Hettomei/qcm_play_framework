@@ -24,4 +24,18 @@ public class Stagiaire extends Model {
 		return find.all();
 	}
 
+	public String allQcmIds(){
+		StringBuilder sb = new StringBuilder();
+
+		for(Qcm qcm: qcms) {
+			sb.append(qcm.id.toString()).append(',');
+		}
+
+		if(sb.length() > 0){
+			sb.deleteCharAt(sb.length()-1); //delete last comma
+		}
+
+		return sb.toString();
+	}
+
 }

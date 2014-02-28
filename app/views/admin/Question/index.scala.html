@@ -16,8 +16,8 @@
   </thead>
   @for(question <- questions) {
   <tr>
-    <td> @question.id </td>
-    <td> @question.question </td>
+    <td><a href="@controllers.admin.routes.QuestionsController.show(question.id)">@question.id</a></td>
+    <td><a href="@controllers.admin.routes.QuestionsController.show(question.id)">@question.question</a></td>
     <td> @question.reponse </td>
     <td>
       @form(controllers.admin.routes.QuestionsController.edit(question.id), 'class -> "form-inline col-xs-3", 'role -> "form") {

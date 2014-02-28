@@ -45,4 +45,9 @@ public class QuestionsController extends AdminController {
 		return redirect(controllers.admin.routes.QuestionsController.index());
 	}
 
+	public static Result show(Long id) {
+	  models.Question question = models.Question.find.byId(id);
+		return ok(views.html.admin.Question.show.render(question));
+	}
+
 }

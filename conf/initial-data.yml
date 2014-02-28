@@ -1,55 +1,48 @@
 stagiaires:
-    - !!models.Stagiaire
-        nom:        Guillaume
-        prenom:        Bort
-        promotion:  DL124
-
-    - !!models.Stagiaire
-        nom:          Dantec
-        prenom:     Maxime
-        promotion:  DL223
-
-    - !!models.Stagiaire
-        nom:          Drobi
-        prenom:     Sadek
-        promotion:  AL154
-
-    - !!models.Stagiaire
-        nom:        Loisant
-        prenom:     Erwan
-        promotion:  CDI102
+  - !!models.Stagiaire
+    nom:        Guillaume
+    prenom:     Bort
+    promotion:  DL124
+  - !!models.Stagiaire
+    nom:        Dantec
+    prenom:     Maxime
+    promotion:  DL223
+  - !!models.Stagiaire
+    nom:        Drobi
+    prenom:     Sadek
+    promotion:  AL154
+  - !!models.Stagiaire
+    nom:        Loisant
+    prenom:     Erwan
+    promotion:  CDI102
 
 qcms:
-    - !!models.Qcm
-        name:       JAVA
-        description:     JAVA framework
-        numberOfQuestions: 10
-        questions:
-            - !!models.Question
-                question:      Qu'est ce qu'un Térébinthe ?
-                reponse:       Nom vulgaire et spécifique du pistachier.
-            - !!models.Question
-                question:      Qu'est ce qu'une Tiercerolle ?
-                reponse:       Barrique contenant 210 litres.
+  - !!models.Qcm
+    name: JAVA
+    description: J2EE
+    numberOfQuestions: 10
+  - !!models.Qcm
+    name: C#
+    description: C#.NET
+    numberOfQuestions: 20
+  - !!models.Qcm
+    name: Analyse et conception
+    description: UML
+    numberOfQuestions: 30
 
-
-    - !!models.Qcm
-        name:       C#
-        description:     .NET
-        numberOfQuestions: 10
-        questions:
-            - !!models.Question
-                question:      Qu'est ce que # ?
-                reponse:       sharp
-            - !!models.Question
-                question:      Ping ?
-                reponse:       Pong
-
-    - !!models.Qcm
-        name:        Analyse et conception
-        description: UML
-        numberOfQuestions: 10
-        questions:
-            - !!models.Question
-                question:      Apres A il y a ?
-                reponse:       B
+questions:
+  - !!models.Question
+    question: Qu'est ce qu'un Térébinthe ?
+    reponse:  Nom vulgaire et spécifique du pistachier.
+  - !!models.Question
+    question: Qu'est ce qu'une Tiercerolle ?
+    reponse:  Barrique contenant 210 litres.
+  - !!models.Question
+    question: "Que signifie http dans http://www.example.com"
+    reponse:  hyper text transfert protocol
+  - !!models.Question
+    question: "Que signifie www dans http://www.example.com"
+    reponse:  world wide web
+  - !!models.Question
+    question: "Java == Javascript ?"
+    reponse:  "false"

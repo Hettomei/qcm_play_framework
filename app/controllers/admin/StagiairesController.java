@@ -6,10 +6,9 @@ import play.data.*;
 
 public class StagiairesController extends AdminController {
 
-	static Form<models.Stagiaire> theForm = Form.form(models.Stagiaire.class);
 
 	public static Result index() {
-		return ok(views.html.admin.Stagiaire.index.render(models.Stagiaire.all(), theForm));
+		return ok(views.html.admin.Stagiaire.index.render(models.Stagiaire.all()));
 	}
 
 	public static Result delete(Long id) {

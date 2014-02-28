@@ -33,7 +33,8 @@ GET     /admin/questions             controllers.admin.QuestionsController.index
 GET     /admin/questions/new         controllers.admin.QuestionsController.create()
 POST    /admin/questions             controllers.admin.QuestionsController.save()
 
-GET     /admin/questions/:id         controllers.admin.QuestionsController.edit(id:Long)
+GET     /admin/questions/:id/show    controllers.admin.QuestionsController.show(id:Long)
+GET     /admin/questions/:id/edit    controllers.admin.QuestionsController.edit(id:Long)
 POST    /admin/questions/:id         controllers.admin.QuestionsController.update(id:Long)
 POST    /admin/questions/:id/delete  controllers.admin.QuestionsController.delete(id:Long)
 

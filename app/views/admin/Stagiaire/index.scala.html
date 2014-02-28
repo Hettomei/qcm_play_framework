@@ -1,4 +1,4 @@
-@(stagiaires: List[models.Stagiaire], theForm: Form[models.Stagiaire])
+@(stagiaires: List[models.Stagiaire])
 @import helper._
 @import helper.twitterBootstrap._
 
@@ -14,9 +14,9 @@
   </thead>
   @for(stagiaire <- stagiaires) {
   <tr>
- <td> @stagiaire.id </td>
-    <td> <a href="@controllers.admin.routes.StagiairesController.show(stagiaire.id)">   @stagiaire.prenom @stagiaire.nom</a></td>
-    <td> @stagiaire.promotion </td>
+    <td><a href="@controllers.admin.routes.StagiairesController.show(stagiaire.id)">@stagiaire.id</a></td>
+    <td><a href="@controllers.admin.routes.StagiairesController.show(stagiaire.id)">@stagiaire.prenom @stagiaire.nom</a></td>
+    <td>@stagiaire.promotion</td>
     <td>
       <div class="row">
         <div class="col-xs-2">

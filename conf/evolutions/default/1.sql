@@ -24,47 +24,27 @@ create table stagiaire (
 ;
 
 
-create table qcm_stagiaire (
-  qcm_id                         integer not null,
-  stagiaire_id                   integer not null,
-  constraint pk_qcm_stagiaire primary key (qcm_id, stagiaire_id))
-;
-
 create table qcm_question (
   qcm_id                         integer not null,
   question_id                    integer not null,
   constraint pk_qcm_question primary key (qcm_id, question_id))
 ;
 
-create table question_qcm (
-  question_id                    integer not null,
+create table qcm_stagiaire (
   qcm_id                         integer not null,
-  constraint pk_question_qcm primary key (question_id, qcm_id))
-;
-
-create table stagiaire_qcm (
   stagiaire_id                   integer not null,
-  qcm_id                         integer not null,
-  constraint pk_stagiaire_qcm primary key (stagiaire_id, qcm_id))
+  constraint pk_qcm_stagiaire primary key (qcm_id, stagiaire_id))
 ;
 
 
-
-alter table qcm_stagiaire add constraint fk_qcm_stagiaire_qcm_01 foreign key (qcm_id) references qcm (id);
-
-alter table qcm_stagiaire add constraint fk_qcm_stagiaire_stagiaire_02 foreign key (stagiaire_id) references stagiaire (id);
 
 alter table qcm_question add constraint fk_qcm_question_qcm_01 foreign key (qcm_id) references qcm (id);
 
 alter table qcm_question add constraint fk_qcm_question_question_02 foreign key (question_id) references question (id);
 
-alter table question_qcm add constraint fk_question_qcm_question_01 foreign key (question_id) references question (id);
+alter table qcm_stagiaire add constraint fk_qcm_stagiaire_qcm_01 foreign key (qcm_id) references qcm (id);
 
-alter table question_qcm add constraint fk_question_qcm_qcm_02 foreign key (qcm_id) references qcm (id);
-
-alter table stagiaire_qcm add constraint fk_stagiaire_qcm_stagiaire_01 foreign key (stagiaire_id) references stagiaire (id);
-
-alter table stagiaire_qcm add constraint fk_stagiaire_qcm_qcm_02 foreign key (qcm_id) references qcm (id);
+alter table qcm_stagiaire add constraint fk_qcm_stagiaire_stagiaire_02 foreign key (stagiaire_id) references stagiaire (id);
 
 # --- !Downs
 
@@ -72,17 +52,13 @@ PRAGMA foreign_keys = OFF;
 
 drop table qcm;
 
-drop table qcm_stagiaire;
-
 drop table qcm_question;
+
+drop table qcm_stagiaire;
 
 drop table question;
 
-drop table question_qcm;
-
 drop table stagiaire;
-
-drop table stagiaire_qcm;
 
 PRAGMA foreign_keys = ON;
 

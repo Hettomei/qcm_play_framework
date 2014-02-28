@@ -14,7 +14,8 @@ public class Stagiaire extends Model {
 	public String prenom;
 	@Required
 	public String promotion;
-	@ManyToMany
+
+	@ManyToMany(mappedBy="stagiaires")
 	public List<Qcm> qcms;
 
 	public static Finder<Long,Stagiaire> find = new Finder(Long.class, Stagiaire.class);

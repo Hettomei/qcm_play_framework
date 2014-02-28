@@ -17,12 +17,10 @@ public class Qcm extends Model {
 	public String description;
 	@Required
 	public Long numberOfQuestions;
-	@ManyToMany
-	public List<Stagiaire> stagiaires;
-
-	//save and delete cascaded
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	public List<Question> questions;
+	@ManyToMany(cascade=CascadeType.ALL)
+	public List<Stagiaire> stagiaires;
 
 	public static Finder<Long,Qcm> find = new Finder(Long.class, Qcm.class);
 

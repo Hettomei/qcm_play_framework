@@ -20,8 +20,10 @@ GET     /admin/qcms                  controllers.admin.QcmController.index()
 GET     /admin/qcms/new              controllers.admin.QcmController.create()
 POST    /admin/qcms                  controllers.admin.QcmController.save()
 
-GET     /admin/qcms/:id/edit         controllers.admin.QcmController.edit(id:Long)
 GET     /admin/qcms/:id/show         controllers.admin.QcmController.show(id:Long)
+GET     /admin/qcms/:id/edit         controllers.admin.QcmController.edit(id:Long)
+POST    /admin/qcms/:id/add_question controllers.admin.QcmController.add_question(id:Long)
+POST    /admin/qcms/:id/remove_question controllers.admin.QcmController.remove_question(id:Long)
 POST    /admin/qcms/:id              controllers.admin.QcmController.update(id:Long)
 POST    /admin/qcms/:id/delete       controllers.admin.QcmController.delete(id:Long)
 

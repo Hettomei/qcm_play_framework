@@ -21,7 +21,7 @@ public class Qcm extends Model {
 	public List<Stagiaire> stagiaires;
 
 	//save and delete cascaded
-	@OneToMany(cascade=CascadeType.ALL)
+	@ManyToMany
 	public List<Question> questions;
 
 	public static Finder<Long,Qcm> find = new Finder(Long.class, Qcm.class);

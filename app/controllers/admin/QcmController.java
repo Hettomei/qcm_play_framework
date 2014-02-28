@@ -46,8 +46,32 @@ public class QcmController extends AdminController {
 		return redirect(controllers.admin.routes.QcmController.show(id));
 	}
 
+	public static Result add_question(Long id) {
+		DynamicForm requestData = Form.form().bindFromRequest();
+		long question_id = Long.parseLong(requestData.get("question_id"),10);
+	  models.Qcm qcm = models.Qcm.find.byId(id);
+	  models.Question question = models.Question.find.byId(question_id);
+
+		qcm.questions.add(question);
+		qcm.save();
+
+		return redirect(controllers.admin.routes.QcmController.show(id));
+	}
+
+	public static Result remove_question(Long id) {
+		DynamicForm requestData = Form.form().bindFromRequest();
+		long question_id = Long.parseLong(requestData.get("question_id"),10);
+	  models.Qcm qcm = models.Qcm.find.byId(id);
+	  models.Question question = models.Question.find.byId(question_id);
+
+		qcm.questions.remove(question);
+		qcm.save();
+
+		return redirect(controllers.admin.routes.QcmController.show(id));
+	}
+
 	public static Result show(Long id) {
 	  models.Qcm qcm = models.Qcm.find.byId(id);
-		return ok(views.html.admin.Qcm.show.render(qcm));
+		return ok(views.html.admin.Qcm.show.render(qcm, models.Question.find.all() ));//where().eq("id", 1).findList()));
 	}
 }

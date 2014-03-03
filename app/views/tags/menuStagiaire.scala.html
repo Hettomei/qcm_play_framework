@@ -1,6 +1,12 @@
 @(active: String = "")
-<p> </p>
+<p></p>
 <ul class="nav nav-pills nav-stacked">
-	<li class="@(if(active=="availableTests"){"active"})"><a href="@controllers.routes.StagiairesController.index">QCM disponibles</a></li>
-	<li class="@(if(active=="Disconnect"){"active"})"><a href="@controllers.routes.StagiairesController.disconnect">Déconnexion</a></li>
+	<li class="@(if(active=="availableTests"){"active"})">
+		<a	href="@controllers.routes.StagiairesController.show">QCM disponibles</a>
+	</li>
+	<li>
+		<form method="post" action="@routes.StagiairesController.disconnect()">
+			<input type="submit" value="Déconnexion" class="btn btn-link">
+		</form>
+	</li>
 </ul>

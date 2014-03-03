@@ -14,6 +14,9 @@ public class Question extends Model {
 	public String question;
 	@Required
 	public String reponse;
+	//if true, can't delete or modify it
+	public Boolean readOnly = false;
+
 	@ManyToMany(mappedBy="questions")
 	public List<Qcm> qcms;
 

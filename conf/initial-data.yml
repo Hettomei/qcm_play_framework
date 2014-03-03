@@ -34,15 +34,20 @@ questions:
   - !!models.Question
     question: Qu'est ce qu'un Térébinthe ?
     reponse:  Nom vulgaire et spécifique du pistachier.
+    readOnly: true
   - !!models.Question
     question: Qu'est ce qu'une Tiercerolle ?
     reponse:  Barrique contenant 210 litres.
+    readOnly: false
   - !!models.Question
     question: "Que signifie http dans http://www.example.com"
     reponse:  hyper text transfert protocol
+    readOnly: true
   - !!models.Question
     question: "Que signifie www dans http://www.example.com"
     reponse:  world wide web
+    readOnly: false
   - !!models.Question
     question: "Java == Javascript ?"
     reponse:  "false"
+    readOnly: true

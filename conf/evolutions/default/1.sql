@@ -13,7 +13,8 @@ create table qcm (
 create table question (
   id                        integer primary key AUTOINCREMENT,
   question                  varchar(255),
-  reponse                   varchar(255))
+  reponse                   varchar(255),
+  read_only                 integer(1))
 ;
 
 create table stagiaire (

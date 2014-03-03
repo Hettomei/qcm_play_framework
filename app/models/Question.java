@@ -20,7 +20,7 @@ public class Question extends Model {
 	@ManyToMany(mappedBy="questions")
 	public List<Qcm> qcms;
 
-	public static Finder<Long,Question> find = new Finder(Long.class, Question.class);
+	public static Model.Finder<Long,Question> find = new Finder(Long.class, Question.class);
 
 	public static List<Question> all() {
 		return find.all();

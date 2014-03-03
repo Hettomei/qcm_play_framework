@@ -3,10 +3,12 @@
 # ~~~~
 
 ### Home page
-GET     /                            controllers.Application.index()
-GET     /qcms                        controllers.Qcm.index()
+GET     /                            controllers.StagiairesController.show()
 ######################### Stagiaires
-GET     /stagiaire                   controllers.StagiairesController.index()
+
+GET     /stagiaire                   controllers.StagiairesController.show()
+GET     /stagiaire/sessiontest       controllers.StagiairesController.sessiontest()
+POST    /stagiaire/sessiontest       controllers.StagiairesController.sessiontest()
 POST    /stagiaire                   controllers.StagiairesController.disconnect()
 
 ######################### Stagiaires

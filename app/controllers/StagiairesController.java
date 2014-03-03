@@ -32,14 +32,14 @@ public class StagiairesController extends Controller {
 	public static Result sessiontest() {
 		Session session = Http.Context.current().session();
 		DynamicForm requestData = Form.form().bindFromRequest();
-		String id = requestData.get("login"); 
+		String id = requestData.get("login");
 		session.put("login", id );
 		return redirect(controllers.routes.StagiairesController.show());
 	}
 
 	public static Result disconnect() {
 		Session session = Http.Context.current().session();
-	    session.remove("login");
-	    return redirect(controllers.routes.StagiairesController.show());
+		session.remove("login");
+		return redirect(controllers.routes.StagiairesController.show());
 	}
 }

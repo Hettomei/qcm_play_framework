@@ -19,15 +19,15 @@
 				<ul class="nav navbar-nav">
 					<li><a href="@controllers.admin.routes.AdminController.index">Admin</a></li>
 				</ul>
-				<ul class="nav navbar-nav right">
-					<li><a href="@controllers.admin.routes.AdminController.index">Déconnexion</a></li>
-				</ul>
 			</div>
 		</div>
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3"><img alt="logo" src="@routes.Assets.at("images/qcm.jpeg")">@menu </div>
+			<div class="col-md-3">
+				<img alt="logo" src="@routes.Assets.at("images/qcm.jpeg")" class="img-responsive">
+				@menu
+			</div>
 			<div class="col-md-9">@content</div>
 		</div>
 

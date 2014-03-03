@@ -14,13 +14,28 @@ public class Stagiaire extends Model {
 	public String prenom;
 	@Required
 	public String promotion;
-	@ManyToMany
+
+	@ManyToMany(mappedBy="stagiaires")
 	public List<Qcm> qcms;
 
 	public static Finder<Long,Stagiaire> find = new Finder(Long.class, Stagiaire.class);
 
 	public static List<Stagiaire> all() {
 		return find.all();
+	}
+
+	public String allQcmIds(){
+		StringBuilder sb = new StringBuilder();
+
+		for(Qcm qcm: qcms) {
+			sb.append(qcm.id.toString()).append(',');
+		}
+
+		if(sb.length() > 0){
+			sb.deleteCharAt(sb.length()-1); //delete last comma
+		}
+
+		return sb.toString();
 	}
 
 }

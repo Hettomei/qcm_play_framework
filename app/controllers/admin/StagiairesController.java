@@ -3,6 +3,7 @@ package controllers.admin;
 import models.Stagiaire;
 import play.mvc.*;
 import play.data.*;
+import java.util.*;
 
 public class StagiairesController extends AdminController {
 
@@ -18,9 +19,13 @@ public class StagiairesController extends AdminController {
 
 	public static Result show(Long id) {
 		Stagiaire s = models.Stagiaire.find.ref(id);
-		return ok(views.html.admin.Stagiaire.show.render(s, models.Qcm.all()));
+		return ok(
+				views.html.admin.Stagiaire.show.render(
+					s,
+					models.Qcm.find.where("id NOT IN (" + s.allQcmIds() + ")").findList())
+				);
 	}
-	
+
 	public static Result add_qcm(Long id) {
 		DynamicForm requestData = Form.form().bindFromRequest();
 		long qcm_id = Long.parseLong(requestData.get("qcm_id"),10);
@@ -31,7 +36,6 @@ public class StagiairesController extends AdminController {
 			sta.qcms.add(qcm);
 			sta.save();
 		}
-
 		return redirect(controllers.admin.routes.StagiairesController.show(id));
 	}
 
@@ -40,10 +44,15 @@ public class StagiairesController extends AdminController {
 		long qcm_id = Long.parseLong(requestData.get("qcm_id"),10);
 		models.Stagiaire sta = models.Stagiaire.find.byId(id);
 		models.Qcm qcm = models.Qcm.find.byId(qcm_id);
-		
+
 		sta.qcms.remove(qcm);
 		sta.save();
 
 		return redirect(controllers.admin.routes.StagiairesController.show(id));
 	}
+
+	public static List allQcmNotInStagiaire(models.Stagiaire stagiaire){
+		return models.Question.find.where("id NOT IN (" + stagiaire.allQcmIds() + ")").findList();
+	}
+
 }

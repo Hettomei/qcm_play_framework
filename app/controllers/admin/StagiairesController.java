@@ -26,9 +26,11 @@ public class StagiairesController extends AdminController {
 		long qcm_id = Long.parseLong(requestData.get("qcm_id"),10);
 		models.Stagiaire sta = models.Stagiaire.find.byId(id);
 		models.Qcm qcm = models.Qcm.find.byId(qcm_id);
-		
-		sta.qcms.add(qcm);
-		sta.save();
+
+		if (!sta.qcms.contains(qcm)){
+			sta.qcms.add(qcm);
+			sta.save();
+		}
 
 		return redirect(controllers.admin.routes.StagiairesController.show(id));
 	}

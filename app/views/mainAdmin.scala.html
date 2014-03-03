@@ -24,11 +24,15 @@
 	</nav>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3">
-				<img alt="logo" src="@routes.Assets.at("images/qcm.jpeg")" class="img-responsive">
-				@menu
+			<div class="col-md-2">
+				<div class="row">
+					<img alt="logo" src="@routes.Assets.at("images/qcm.jpeg")" class="img-responsive">
+				</div>
+				<div class="row">
+					@menu
+				</div>
 			</div>
-			<div class="col-md-9">
+			<div class="col-md-10">
 				@tags.flashView()
 				@content
 			</div>

@@ -1,51 +1,12 @@
-@(stagiaire: models.Stagiaire) 
-@import helper._
-@import helper.twitterBootstrap._ 
-@main(""){@tags.menuStagiaire("manageStagiaire")} {
+@(stagiaire: models.Stagiaire)
+@main(){@tags.menuStagiaire("manageStagiaire")} {
 <div class="row">
-	<div class="col-xs-7">
-		<h1>Détail du Stagiaire</h1>
-	</div>
-	<div class="col-xs-5">
-		@helper.form(controllers.admin.routes.StagiairesController.delete(stagiaire.id), 'class -> "form-inline col-xs-3") {
-		<button type="submit" class="btn btn-warning">
-			<span class="glyphicon glyphicon-remove" title="Supprimer"></span> Supprimer
-		</button>
-		}
-	</div>
+	<h1>Détail du Stagiaire</h1>
 </div>
 
 @tags.property("Id"        , stagiaire.id.toString())
 @tags.property("Prenom"    , stagiaire.prenom)
 @tags.property("Nom"       , stagiaire.nom)
 @tags.property("Promotion" , stagiaire.promotion)
-
-<h2>QCM du stagiaire</h2>
-<table class="table table-hover">
-	<thead>
-		<tr>
-			<th>Id</th>
-			<th>Nom</th>
-			<th>Description</th>
-			<th>Questions à passer</th>
-		</tr>
-	</thead>
-	@for(qcm <- stagiaire.qcms) {
-	<tr>
-		<td>@qcm.id</td>
-		<td>@qcm.name</td>
-		<td>@qcm.description</td>
-		<td>@qcm.numberOfQuestions</td>
-		<td>
-			@helper.form(controllers.admin.routes.StagiairesController.remove_qcm(stagiaire.id),
-			'class -> "form-inline", 'role -> "form") { 
-			<input type="hidden" name="qcm_id" value="@qcm.id" />
-			<button type="submit" class="btn btn-warning">
-				<span class="glyphicon glyphicon-minus-sign"></span>
-			</button> }
-		</td>
-	</tr>
-	}
-</table>
 
 }

@@ -1,7 +1,7 @@
 @import helper._
 @import helper.twitterBootstrap._
 
-@main(){@tags.menuStagiaire("availableTests")} {
+@main(){@tags.menuStagiaire()} {
 <form method="post" action="@routes.StagiairesController.sessiontest()">
  	<input type="text" name="login" placeholder="Id du stagiaire" >
 	<input type="submit" value="Login" class="btn btn-primary">

@@ -25,7 +25,7 @@ public class QuestionsController extends AdminController {
 			return badRequest(views.html.admin.Question.edit.render(id, QuestionForm));
 		}
 		QuestionForm.get().update(id);
-		flash("success", "QCM " + QuestionForm.get().question + " à été mis à jour");
+		flash("success", "La question <<" + QuestionForm.get().question + ">> a été mise à jour");
 		return redirect(controllers.admin.routes.QuestionsController.index());
 	}
 
@@ -42,6 +42,7 @@ public class QuestionsController extends AdminController {
 
 	public static Result delete(Long id) {
 		models.Question.find.ref(id).delete();
+		flash("info", "La question " + id + " a été supprimée.");
 		return redirect(controllers.admin.routes.QuestionsController.index());
 	}
 

@@ -1,0 +1,27 @@
+@if(flash.get("success")){
+<div class="alert alert-success alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<p>@flash.get("success")</p>
+</div>
+}
+
+@if(flash.get("info")){
+<div class="alert alert-info alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<p>@flash.get("info")</p>
+</div>
+}
+
+@if(flash.get("warning")){
+<div class="alert alert-warning alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<p>@flash.get("warning")</p>
+</div>
+}
+
+@if(flash.get("danger")){
+<div class="alert alert-danger alert-dismissable">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	<p>@flash.get("danger")</p>
+</div>
+}

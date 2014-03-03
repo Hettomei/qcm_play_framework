@@ -28,7 +28,10 @@
 				<img alt="logo" src="@routes.Assets.at("images/qcm.jpeg")" class="img-responsive">
 				@menu
 			</div>
-			<div class="col-md-9">@content</div>
+			<div class="col-md-9">
+				@tags.flashView()
+				@content
+			</div>
 		</div>
 
 	</div>

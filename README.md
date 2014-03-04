@@ -15,6 +15,6 @@ $ cd path/to/myapp
 $ play run
 
 
-Avec cygwin :
+Avec cygwin : // Fonctionne tres mal
 $ cd path/to/myapp
 $ play.bat run

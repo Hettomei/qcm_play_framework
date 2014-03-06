@@ -17,19 +17,6 @@
     <td><a href="@controllers.admin.routes.StagiairesController.show(stagiaire.id)">@stagiaire.id</a></td>
     <td><a href="@controllers.admin.routes.StagiairesController.show(stagiaire.id)">@stagiaire.prenom @stagiaire.nom</a></td>
     <td>@stagiaire.promotion</td>
-    <td>
-      <div class="row">
-        <div class="col-xs-2">
-          @form(controllers.admin.routes.StagiairesController.delete(stagiaire.id), 'class -> "form-inline") {
-          <button type="submit" class="btn btn-warning">
-            <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
-          </button>
-          }
-        </div>
-      </div>
-    </td>
-
-
   </tr>
   }
 </table>

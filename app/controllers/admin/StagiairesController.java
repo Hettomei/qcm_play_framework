@@ -1,58 +1,72 @@
 package controllers.admin;
 
-import models.Stagiaire;
+import java.util.*;
+
 import play.mvc.*;
 import play.data.*;
-import java.util.*;
+import play.db.jpa.Transactional;
+
+import models.Stagiaire;
+import models.Qcm;
+import models.Evaluation;
+import javax.persistence.NoResultException;
 
 public class StagiairesController extends AdminController {
 
 
+	@Transactional
 	public static Result index() {
-		return ok(views.html.admin.Stagiaire.index.render(models.Stagiaire.all()));
+		return ok(views.html.admin.Stagiaire.index.render(Stagiaire.all()));
 	}
 
-	public static Result delete(Long id) {
-		models.Stagiaire.find.ref(id).delete();
-		return redirect(controllers.admin.routes.StagiairesController.index());
-	}
-
+	@Transactional
 	public static Result show(Long id) {
-		Stagiaire s = models.Stagiaire.find.ref(id);
+		Stagiaire stagiaire = Stagiaire.findById(id);
 		return ok(
 				views.html.admin.Stagiaire.show.render(
-					s,
-					models.Qcm.find.where("id NOT IN (" + s.allQcmIds() + ")").findList())
+					stagiaire,
+					Qcm.all()
+					)
 				);
 	}
 
-	public static Result add_qcm(Long id) {
+	@Transactional
+	public static Result add_evaluation(Long id) {
 		DynamicForm requestData = Form.form().bindFromRequest();
 		long qcm_id = Long.parseLong(requestData.get("qcm_id"),10);
-		models.Stagiaire sta = models.Stagiaire.find.byId(id);
-		models.Qcm qcm = models.Qcm.find.byId(qcm_id);
+		Stagiaire stagiaire = Stagiaire.findById(id);
+		Qcm qcm = Qcm.findById(qcm_id);
+		qcm.frozen = true;
+		qcm.save();
 
-		if (!sta.qcms.contains(qcm)){
-			sta.qcms.add(qcm);
-			sta.save();
+		try{
+			Evaluation eval = Evaluation.findByStagiaireAndQcm(stagiaire, qcm);
+			flash("danger", "Evaluation déjà dans la liste, id : " + eval.id);
+		} catch(NoResultException nre){
+			Evaluation eval = new Evaluation(stagiaire, qcm);
+			eval.save();
+			flash("success", "Evaluation ajoutée pour le stagiaire " + id + " et le qcm " + qcm_id);
 		}
+
 		return redirect(controllers.admin.routes.StagiairesController.show(id));
 	}
 
+	@Transactional
 	public static Result remove_qcm(Long id) {
 		DynamicForm requestData = Form.form().bindFromRequest();
 		long qcm_id = Long.parseLong(requestData.get("qcm_id"),10);
-		models.Stagiaire sta = models.Stagiaire.find.byId(id);
-		models.Qcm qcm = models.Qcm.find.byId(qcm_id);
+		Stagiaire stagiaire = Stagiaire.findById(id);
+		Qcm qcm = Qcm.findById(qcm_id);
 
-		sta.qcms.remove(qcm);
-		sta.save();
+		try{
+			Evaluation eval = Evaluation.findByStagiaireAndQcm(stagiaire, qcm);
+			eval.delete();
+			flash("success", "Evaluation supprimée pour le stagiaire " + id + " et le qcm " + qcm_id);
+		} catch(NoResultException nre){
+			flash("danger", "Aucune evaluation trouvé pour le stagiaire " + id + " et le qcm " + qcm_id);
+		}
 
 		return redirect(controllers.admin.routes.StagiairesController.show(id));
-	}
-
-	public static List allQcmNotInStagiaire(models.Stagiaire stagiaire){
-		return models.Question.find.where("id NOT IN (" + stagiaire.allQcmIds() + ")").findList();
 	}
 
 }

@@ -2,62 +2,75 @@ package controllers.admin;
 
 import play.mvc.*;
 import play.data.*;
+import play.db.jpa.Transactional;
+
+import models.Question;
+import exceptions.FrozenException;
 
 public class QuestionsController extends AdminController {
 
+	@Transactional
 	public static Result index() {
-		return ok(views.html.admin.Question.index.render(models.Question.all()));
+		return ok(views.html.admin.Question.index.render(Question.all()));
 	}
 
+	@Transactional
 	public static Result create() {
-		Form<models.Question> QuestionForm = Form.form(models.Question.class);
-		return ok(views.html.admin.Question.create.render(QuestionForm));
+		Form<Question> questionForm = Form.form(Question.class);
+		return ok(views.html.admin.Question.create.render(questionForm));
 	}
 
+	@Transactional
 	public static Result edit(Long id) {
-		Form<models.Question> QuestionForm = Form.form(models.Question.class).fill(models.Question.find.byId(id));
-		return ok(views.html.admin.Question.edit.render(id, QuestionForm));
+		Form<Question> questionForm = Form.form(Question.class).fill(Question.findById(id));
+		return ok(views.html.admin.Question.edit.render(id, questionForm));
 	}
 
+	@Transactional
 	public static Result update(Long id) {
-		//Because if we take from QuestionForm.get() it s always false. A bug ?
-		if(models.Question.find.byId(id).readOnly){
+		Form<Question> questionForm = Form.form(Question.class).bindFromRequest();
+		if(questionForm.hasErrors()) {
+			return badRequest(views.html.admin.Question.edit.render(id, questionForm));
+		}
+
+		Question question = Question.findById(id);
+		try{
+			question.update(questionForm.get());
+			flash("success", "La question <<" + question.id + ">> a été mise à jour");
+		}catch(FrozenException e){
 			flash("danger", "La question " + id + " ne peut pas être modifiée.");
-			return redirect(controllers.admin.routes.QuestionsController.index());
 		}
-		Form<models.Question> QuestionForm = Form.form(models.Question.class).bindFromRequest();
-		if(QuestionForm.hasErrors()) {
-			return badRequest(views.html.admin.Question.edit.render(id, QuestionForm));
-		}
-		QuestionForm.get().update(id);
-		flash("success", "La question <<" + QuestionForm.get().question + ">> a été mise à jour");
+
 		return redirect(controllers.admin.routes.QuestionsController.index());
 	}
 
+	@Transactional
 	public static Result save() {
-		Form<models.Question> QuestionForm = Form.form(models.Question.class);
-		Form<models.Question> filledForm = QuestionForm.bindFromRequest();
-		if(filledForm.hasErrors()) {
-			return badRequest(views.html.admin.Question.create.render(filledForm));
+		Form<Question> questionForm = Form.form(Question.class).bindFromRequest();
+		if(questionForm.hasErrors()) {
+			return badRequest(views.html.admin.Question.create.render(questionForm));
 		} else {
-			filledForm.get().save();
+			questionForm.get().save();
 			return redirect(controllers.admin.routes.QuestionsController.index());
 		}
 	}
 
+	@Transactional
 	public static Result delete(Long id) {
-		models.Question question = models.Question.find.byId(id);
-		if(question.readOnly){
-			flash("danger", "La question " + id + " ne peut pas être supprimée.");
-		}else{
+		Question question = Question.findById(id);
+
+		try{
 			question.delete();
 			flash("info", "La question " + id + " a été supprimée.");
+		}catch(FrozenException e){
+			flash("danger", "La question " + id + " ne peut pas être supprimée.");
 		}
 		return redirect(controllers.admin.routes.QuestionsController.index());
 	}
 
+	@Transactional
 	public static Result show(Long id) {
-		models.Question question = models.Question.find.byId(id);
+		Question question = Question.findById(id);
 		return ok(views.html.admin.Question.show.render(question));
 	}
 

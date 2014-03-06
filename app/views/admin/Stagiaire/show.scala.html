@@ -1,24 +1,13 @@
 @(stagiaire: models.Stagiaire, qcms: List[models.Qcm] )
 @mainAdmin(){@tags.menu("manageStagiaire")} {
-<div class="row">
-	<div class="col-xs-7">
-		<h1>Détail du Stagiaire</h1>
-	</div>
-	<div class="col-xs-5">
-		@helper.form(controllers.admin.routes.StagiairesController.delete(stagiaire.id), 'class -> "form-inline col-xs-3") {
-		<button type="submit" class="btn btn-warning">
-			<span class="glyphicon glyphicon-remove" title="Supprimer"></span> Supprimer
-		</button>
-		}
-	</div>
-</div>
+<h1>Détail du Stagiaire</h1>
 
 @tags.property("Id"        , stagiaire.id.toString())
 @tags.property("Prenom"    , stagiaire.prenom)
 @tags.property("Nom"       , stagiaire.nom)
 @tags.property("Promotion" , stagiaire.promotion)
 
-<h2>QCM du stagiaire</h2>
+<h2>Tests du stagiaire</h2>
 <table class="table table-hover">
 	<thead>
 		<tr>
@@ -29,29 +18,30 @@
 			<th>Admin</th>
 		</tr>
 	</thead>
-	@for(qcm <- stagiaire.qcms) {
+	@for(evaluation <- stagiaire.getEvaluations()) {
 	<tr>
-		<td>@qcm.id</td>
-		<td>@qcm.name</td>
-		<td>@qcm.description</td>
-		<td>@qcm.numberOfQuestions</td>
+		<td>@evaluation.id</td>
+		<td>@evaluation.qcm.name</td>
+		<td>@evaluation.qcm.description</td>
+		<td>@evaluation.qcm.numberOfQuestions</td>
 		<td>
 			@helper.form(controllers.admin.routes.StagiairesController.remove_qcm(stagiaire.id),
 			'class -> "form-inline", 'role -> "form") {
-			<input type="hidden" name="qcm_id" value="@qcm.id" />
+			<input type="hidden" name="qcm_id" value="@evaluation.qcm.id" />
 			<button type="submit" class="btn btn-warning">
 				<span class="glyphicon glyphicon-minus-sign"></span>
-			</button> }
+			</button>
+			}
 		</td>
 	</tr>
 	}
-
 </table>
-<h3>Autre QCM</h3>
 
+<h3>Autre QCM</h3>
 <table class="table table-hover">
 	<thead>
 		<tr>
+			<th>Id</th>
 			<th>Nom</th>
 			<th>Description</th>
 			<th>Nombre de questions</th>
@@ -59,12 +49,14 @@
 		</tr>
 	</thead>
 	@for(qcm <- qcms) {
+	@if(!stagiaire.getQcms().contains(qcm)){
 	<tr>
+		<td>@qcm.id</td>
 		<td>@qcm.name</td>
 		<td>@qcm.description</td>
 		<td>@qcm.numberOfQuestions</td>
 		<td>
-			@helper.form(controllers.admin.routes.StagiairesController.add_qcm(stagiaire.id),
+			@helper.form(controllers.admin.routes.StagiairesController.add_evaluation(stagiaire.id),
 			'class -> "form-inline", 'role -> "form") {
 			<input type="hidden" name="qcm_id" value="@qcm.id" />
 			<button type="submit" class="btn btn-success">
@@ -73,5 +65,6 @@
 		</td>
 	</tr>
 	}
+}
 </table>
 }

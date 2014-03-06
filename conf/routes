@@ -17,6 +17,9 @@ GET     /admin                       controllers.admin.AdminController.index()
 
 ### QCMs
 GET     /admin/qcms                  controllers.admin.QcmController.index()
+GET     /admin/generate/qcms         controllers.admin.GeneratorController.generateQcms()
+GET     /admin/generate/stagiaires   controllers.admin.GeneratorController.generateStagiaires()
+GET     /admin/generate/questions    controllers.admin.GeneratorController.generateQuestions()
 
 GET     /admin/qcms/new              controllers.admin.QcmController.create()
 POST    /admin/qcms                  controllers.admin.QcmController.save()
@@ -41,12 +44,11 @@ POST    /admin/questions/:id         controllers.admin.QuestionsController.updat
 POST    /admin/questions/:id/delete  controllers.admin.QuestionsController.delete(id:Long)
 
 # Stagiaires
-GET     /admin                       controllers.admin.AdminController.index()
-GET     /admin/stagiaires            controllers.admin.StagiairesController.index()
-GET     /admin/stagiaires/:id/show   controllers.admin.StagiairesController.show(id:Long)
-POST    /admin/stagiaires/:id/delete controllers.admin.StagiairesController.delete(id:Long)
-POST    /admin/stagiaires/:id/add_qcm controllers.admin.StagiairesController.add_qcm(id:Long)
-POST    /admin/stagiaires/:id/remove_qcm controllers.admin.StagiairesController.remove_qcm(id:Long)
+GET     /admin                               controllers.admin.AdminController.index()
+GET     /admin/stagiaires                    controllers.admin.StagiairesController.index()
+GET     /admin/stagiaires/:id/show           controllers.admin.StagiairesController.show(id:Long)
+POST    /admin/stagiaires/:id/add_evaluation controllers.admin.StagiairesController.add_evaluation(id:Long)
+POST    /admin/stagiaires/:id/remove_qcm     controllers.admin.StagiairesController.remove_qcm(id:Long)
 
 ######################### Admin
 

@@ -20,7 +20,7 @@
     <td><a href="@controllers.admin.routes.QuestionsController.show(question.id)">@question.question</a></td>
     <td> @question.reponse </td>
     <td>
-			@if(question.readOnly){
+			@if(question.frozen){
 				<span class="label label-default">Non modifiable</span>
 			}else{
 				<a href="@controllers.admin.routes.QuestionsController.edit(question.id)" class="btn btn-default">

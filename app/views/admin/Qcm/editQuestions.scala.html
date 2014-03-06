@@ -1,66 +1,67 @@
 @(qcm: models.Qcm, questions: List[models.Question])
 
 @mainAdmin(){@tags.menu("manageTest")} {
-<div class="row">
-	<h2>Associer des questions au Qcm "@qcm.name"</h2>
-	<p>Description du QCM : @qcm.description</p>
-	<p><a href="@controllers.admin.routes.QcmController.show(qcm.id)" class="btn btn-primary">Retour au QCM</a></p>
-</div>
+<p><a href="@controllers.admin.routes.QcmController.show(qcm.id)" class="btn btn-primary">Retour au QCM</a></p>
+<h2>Associer des questions</h2>
+@tags.property("Id"                  , qcm.id.toString())
+@tags.property("Nom"                 , qcm.name)
+@tags.property("Description"         , qcm.description)
+@tags.property("Nombre de questions" , qcm.numberOfQuestions.toString())
 
-<div class="row">
-  <h3>Questions dans ce QCM</h3>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Question</th>
-        <th>Reponse</th>
-        <th>Admin</th>
-      </tr>
-    </thead>
-    @for(question <- qcm.questions) {
-    <tr>
-      <td> @question.id </td>
-      <td> @question.question </td>
-      <td> @question.reponse </td>
-      <td>
-        @helper.form(controllers.admin.routes.QcmController.removeQuestion(qcm.id), 'class -> "form-inline", 'role -> "form") {
-        <input type="hidden" name="question_id" value="@question.id" />
-        <button type="submit" class="btn btn-warning">
-          <span class="glyphicon glyphicon-minus-sign"></span>
-        </button>
-        }
-      </td>
-    </tr>
-    }
-  </table>
+<h3>Questions dans ce QCM</h3>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Question</th>
+			<th>Reponse</th>
+			<th>Admin</th>
+		</tr>
+	</thead>
+	@for(question <- qcm.questions) {
+	<tr>
+		<td> @question.id </td>
+		<td> @question.question </td>
+		<td> @question.reponse </td>
+		<td>
+			@helper.form(controllers.admin.routes.QcmController.removeQuestion(qcm.id), 'class -> "form-inline", 'role -> "form") {
+			<input type="hidden" name="question_id" value="@question.id" />
+			<button type="submit" class="btn btn-warning">
+				<span class="glyphicon glyphicon-minus-sign"></span>
+			</button>
+			}
+		</td>
+	</tr>
+	}
+</table>
 
-  <h3>Autre questions</h3>
+<h3>Autre questions</h3>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Question</th>
-        <th>Reponse</th>
-        <th>Admin</th>
-      </tr>
-    </thead>
-    @for(question <- questions) {
-    <tr>
-      <td> @question.id </td>
-      <td> @question.question </td>
-      <td> @question.reponse </td>
-      <td>
-        @helper.form(controllers.admin.routes.QcmController.addQuestion(qcm.id), 'class -> "form-inline", 'role -> "form") {
-        <input type="hidden" name="question_id" value="@question.id" />
-        <button type="submit" class="btn btn-success">
-          <span class="glyphicon glyphicon-plus-sign"></span>
-        </button>
-        }
-      </td>
-    </tr>
-    }
-  </table>
-</div>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Question</th>
+			<th>Reponse</th>
+			<th>Admin</th>
+		</tr>
+	</thead>
+	@for(question <- questions) {
+		@if(!qcm.questions.contains(question)){
+		<tr>
+			<td> @question.id </td>
+			<td> @question.question </td>
+			<td> @question.reponse </td>
+			<td>
+				@helper.form(controllers.admin.routes.QcmController.addQuestion(qcm.id), 'class -> "form-inline", 'role -> "form") {
+				<input type="hidden" name="question_id" value="@question.id" />
+				<button type="submit" class="btn btn-success">
+					<span class="glyphicon glyphicon-plus-sign"></span>
+				</button>
+				}
+			</td>
+		</tr>
+		}
+	}
+</table>
 }

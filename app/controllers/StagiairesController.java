@@ -18,7 +18,7 @@ public class StagiairesController extends Controller {
 		String id = session.get("login");
 
 		if (id != null) {
-			Stagiaire s = models.Stagiaire.find.byId(Long.parseLong(id));
+			Stagiaire s = models.Stagiaire.findById(Long.parseLong(id));
 			if (s == null){
 				return ok(views.html.stagiaire.sessiontest.render());
 			}else{

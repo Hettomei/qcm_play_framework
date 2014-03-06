@@ -1,41 +1,55 @@
 package models;
+
 import java.util.*;
-import play.db.ebean.*;
-import play.data.validation.Constraints.*;
+
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
+
+import play.data.validation.Constraints.*;
+import play.db.jpa.JPA;
 
 @Entity
-public class Stagiaire extends Model {
+@Table(name="stagiaires")
+public class Stagiaire{
 	@Id
+	@GeneratedValue
 	public Long id;
+
 	@Required
 	public String nom;
+
 	@Required
 	public String prenom;
+
 	@Required
 	public String promotion;
 
-	@ManyToMany(mappedBy="stagiaires")
-	public List<Qcm> qcms;
-
-	public static Finder<Long,Stagiaire> find = new Finder(Long.class, Stagiaire.class);
-
 	public static List<Stagiaire> all() {
-		return find.all();
+		CriteriaBuilder builder = JPA.em().getCriteriaBuilder();
+		CriteriaQuery<Stagiaire> criteria = builder.createQuery( Stagiaire.class );
+		Root<Stagiaire> stagiaireRoot = criteria.from( Stagiaire.class );
+		criteria.select( stagiaireRoot );
+		List<Stagiaire> stagiaires = JPA.em().createQuery( criteria ).getResultList();
+		return stagiaires;
 	}
 
-	public String allQcmIds(){
-		StringBuilder sb = new StringBuilder();
+	public static Stagiaire findById(Long id) {
+		return JPA.em().find(Stagiaire.class, id);
+	}
 
-		for(Qcm qcm: qcms) {
-			sb.append(qcm.id.toString()).append(',');
-		}
+	public void save() {
+		JPA.em().persist(this);
+	}
 
-		if(sb.length() > 0){
-			sb.deleteCharAt(sb.length()-1); //delete last comma
-		}
+	public List<Evaluation> getEvaluations(){
+		return Evaluation.findByStagiaire(this);
+	}
 
-		return sb.toString();
+	public List<Qcm> getQcms(){
+		return Evaluation.findQcmsByStagiaire(this);
 	}
 
 }

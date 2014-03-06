@@ -6,7 +6,6 @@
 
 <h1>Edition de la question</h1>
 
-@tags.property("readOnly", models.Question.find.byId(id).readOnly.toString)
 @form(controllers.admin.routes.QuestionsController.update(id)) {
 @inputText(theForm("question"),'_showConstraints -> false)
 @inputText(theForm("reponse"),'_showConstraints -> false)

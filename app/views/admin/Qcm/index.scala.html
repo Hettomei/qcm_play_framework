@@ -17,7 +17,6 @@
 				<th>Nom</th>
 				<th>Description</th>
 				<th>Questions à passer</th>
-				<th>Admin</th>
 			</tr>
 		</thead>
 		@for(qcm <- qcms) {
@@ -26,16 +25,6 @@
 			<td><a href="@controllers.admin.routes.QcmController.show(qcm.id)">@qcm.name</a></td>
 			<td> @qcm.description </td>
 			<td> @qcm.numberOfQuestions </td>
-			<td>
-        <a href="@controllers.admin.routes.QcmController.edit(qcm.id)" class="btn btn-default">
-          <span class="glyphicon glyphicon-edit" title="Supprimer"></span>
-        </a>
-        @form(controllers.admin.routes.QcmController.delete(qcm.id), 'class -> "form-inline pull-right") {
-        <button type="submit" class="btn btn-warning">
-          <span class="glyphicon glyphicon-remove" title="Supprimer"></span>
-        </button>
-        }
-			</td>
 		</tr>
 		}
 	</table>

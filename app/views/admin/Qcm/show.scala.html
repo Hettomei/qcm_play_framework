@@ -2,22 +2,26 @@
 
 @mainAdmin(){@tags.menu("manageTest")} {
 <div class="row">
-  <div class="col-xs-5">
-    <h1>Détails du Qcm</h1>
-  </div>
-  <div class="col-xs-7">
-    <a href="@controllers.admin.routes.QcmController.edit(qcm.id)" class="btn btn-default">
-      <span class="glyphicon glyphicon-edit"></span> Editer
-    </a>
-    <a href="@controllers.admin.routes.QcmController.editQuestions(qcm.id)" class="btn btn-default">
-      <span class="glyphicon glyphicon-edit"></span> Associer des questions
-    </a>
-    @helper.form(controllers.admin.routes.QcmController.delete(qcm.id), 'class -> "form-inline pull-right") {
-    <button type="submit" class="btn btn-warning">
-      <span class="glyphicon glyphicon-remove" title="Supprimer"></span> Supprimer
-    </button>
-    }
-  </div>
+	<div class="col-xs-5">
+		<h1>Détails du Qcm</h1>
+	</div>
+	<div class="col-xs-7">
+		@if(qcm.frozen){
+			<span class="label label-default">Non modifiable</span>
+		}else{
+			<a href="@controllers.admin.routes.QcmController.edit(qcm.id)" class="btn btn-default">
+				<span class="glyphicon glyphicon-edit"></span> Editer
+			</a>
+			@helper.form(controllers.admin.routes.QcmController.delete(qcm.id), 'class -> "form-total-inline") {
+			<button type="submit" class="btn btn-warning">
+				<span class="glyphicon glyphicon-remove" title="Supprimer"></span> Supprimer
+			</button>
+			}
+		}
+		<a href="@controllers.admin.routes.QcmController.editQuestions(qcm.id)" class="btn btn-default">
+			<span class="glyphicon glyphicon-edit"></span> Associer des questions
+		</a>
+	</div>
 </div>
 
 @tags.property("Id"                  , qcm.id.toString())
@@ -25,35 +29,25 @@
 @tags.property("Description"         , qcm.description)
 @tags.property("Nombre de questions" , qcm.numberOfQuestions.toString())
 
-<div class="row">
-@if(qcm.questions.size() == 0) {
-<h3>@qcm.questions.size() question associée</h3>
-}else{
-<h3>@qcm.questions.size() @if(qcm.questions.size() > 1){questions associées}else{question associée}</h3>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Question</th>
-        <th>Reponse</th>
-      </tr>
-    </thead>
-    @for(question <- qcm.questions) {
-    <tr>
-      <td> @question.id </td>
-      <td> @question.question </td>
-      <td> @question.reponse </td>
-    </tr>
-    }
-  </table>
-  }
-</div>
+<h3>Questions</h3>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Question</th>
+			<th>Reponse</th>
+		</tr>
+	</thead>
+	@for(question <- qcm.questions) {
+	<tr>
+		<td> @question.id </td>
+		<td> @question.question </td>
+		<td> @question.reponse </td>
+	</tr>
+	}
+</table>
 
-<div class="row">
-@if(qcm.stagiaires.size() == 0) {
-<h3>@qcm.stagiaires.size() stagiaire inscrit</h3>
-}else{
-<h3>@qcm.stagiaires.size() @if(qcm.stagiaires.size() > 1){stagiaires associés}else{stagiaire associé}</h3>
+<h3>Stagiaires</h3>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -62,7 +56,7 @@
       <th>Promotion</th>
     </tr>
   </thead>
-  @for(stagiaire <- qcm.stagiaires) {
+  @for(stagiaire <- qcm.getStagiaires()) {
   <tr>
     <td><a href="@controllers.admin.routes.StagiairesController.show(stagiaire.id)">@stagiaire.id</a></td>
     <td><a href="@controllers.admin.routes.StagiairesController.show(stagiaire.id)">@stagiaire.prenom @stagiaire.nom</a></td>
@@ -70,6 +64,4 @@
   </tr>
   }
 </table>
-}
-</div>
 }

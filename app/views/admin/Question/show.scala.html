@@ -9,19 +9,15 @@
 	@if(question.frozen){
 		<span class="label label-default">Non modifiable</span>
 	}else{
-		<div class="col-xs-5">
-			@helper.form(controllers.admin.routes.QuestionsController.edit(question.id), 'class -> "form-inline col-xs-3", 'role -> "form") {
-			<button type="submit" class="btn btn-default">
-				<span class="glyphicon glyphicon-edit" title="Editer"></span> Editer
-			</button>
-			}
-			@helper.form(controllers.admin.routes.QuestionsController.delete(question.id), 'class -> "form-inline col-xs-3") {
-			<button type="submit" class="btn btn-warning">
-				<span class="glyphicon glyphicon-remove" title="Supprimer"></span> Supprimer
-			</button>
-		</div>
-			}
-		}
+    <a href="@controllers.admin.routes.QuestionsController.edit(question.id)" class="btn btn-default">
+      <span class="glyphicon glyphicon-edit" title="Editer"></span> Editer
+    </a>
+    @helper.form(controllers.admin.routes.QuestionsController.delete(question.id), 'class -> "form-total-inline") {
+    <button type="submit" class="btn btn-warning">
+      <span class="glyphicon glyphicon-remove" title="Supprimer"></span> Supprimer
+    </button>
+    }
+  }
 </div>
 
 @tags.property("id"       , question.id.toString())

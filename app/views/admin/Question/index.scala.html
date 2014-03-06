@@ -11,7 +11,6 @@
       <th>Id</th>
       <th>Question</th>
       <th>Reponse</th>
-      <th>Admin</th>
     </tr>
   </thead>
   @for(question <- questions) {
@@ -19,20 +18,6 @@
     <td><a href="@controllers.admin.routes.QuestionsController.show(question.id)">@question.id</a></td>
     <td><a href="@controllers.admin.routes.QuestionsController.show(question.id)">@question.question</a></td>
     <td> @question.reponse </td>
-    <td>
-			@if(question.frozen){
-				<span class="label label-default">Non modifiable</span>
-			}else{
-				<a href="@controllers.admin.routes.QuestionsController.edit(question.id)" class="btn btn-default">
-					<span class="glyphicon glyphicon-edit" title="Editer"></span>
-				</a>
-				@form(controllers.admin.routes.QuestionsController.delete(question.id), 'class -> "form-inline pull-right") {
-				<button type="submit" class="btn btn-warning">
-					<span class="glyphicon glyphicon-remove" title="Supprimer"></span>
-				</button>
-				}
-			}
-    </td>
   </tr>
   }
 </table>

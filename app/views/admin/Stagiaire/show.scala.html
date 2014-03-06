@@ -1,5 +1,5 @@
 @(stagiaire: models.Stagiaire, qcms: List[models.Qcm] )
-@mainAdmin(){@tags.menu("manageStagiaire")} {
+@mainAdmin(){@tags.menuAdmin("manageStagiaire")} {
 <h1>Détail du Stagiaire</h1>
 
 @tags.property("Id"        , stagiaire.id.toString())

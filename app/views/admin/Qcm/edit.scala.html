@@ -1,14 +1,13 @@
 @(id: Long, theForm: Form[models.Qcm])
 @import helper._
-@import helper.twitterBootstrap._
 
-@mainAdmin(){@tags.menu("manageTest")} {
+@mainAdmin(){@tags.menuAdmin("manageTest")} {
 	<h1>Edition Qcm</h1>
 
 	@form(controllers.admin.routes.QcmController.update(id)) {
-	@inputText(theForm("name"),'_showConstraints -> false)
-	@inputText(theForm("description"),'_showConstraints -> false)
-		@inputText(theForm("numberOfQuestions"),'_showConstraints -> false)
+	@inputText(theForm("name"))
+	@inputText(theForm("description"))
+		@inputText(theForm("numberOfQuestions"))
 			<input type="submit" value="Update" class="btn btn-primary">
 		}
 }

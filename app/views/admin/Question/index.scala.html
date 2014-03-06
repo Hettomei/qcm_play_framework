@@ -1,7 +1,6 @@
 @(questions: List[models.Question])
-@import helper._
 
-@mainAdmin(){@tags.menu("manageQuestion")} {
+@mainAdmin(){@tags.menuAdmin("manageQuestion")} {
 @if(questions.size() > 1) {<h2>@questions.size() questions</h2>}else{<h2>@questions.size() question</h2>}
 <a href="@controllers.admin.routes.QuestionsController.create" class="btn btn-primary">Créer une question</a>
 

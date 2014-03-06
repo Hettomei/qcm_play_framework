@@ -1,8 +1,6 @@
 @(stagiaires: List[models.Stagiaire])
-@import helper._
-@import helper.twitterBootstrap._
 
-@mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menu("manageStagiaire")} {
+@mainAdmin("Bienvenue sur l'interface de gestion des QCM"){@tags.menuAdmin("manageStagiaire")} {
 @if(stagiaires.size() > 1) {<h2>@stagiaires.size() stagiaires</h2>}else{<h2>@stagiaires.size() stagiaire</h2>}
 <table class="table table-hover">
   <thead>

@@ -1,8 +1,7 @@
 @(theForm: Form[models.Qcm])
 @import helper._
-@import helper.twitterBootstrap._
 
-@mainAdmin(){@tags.menu("manageTest")} {
+@mainAdmin(){@tags.menuAdmin("manageTest")} {
 <h1>Nouveau Qcm</h1>
 
 @form(controllers.admin.routes.QcmController.save()) {

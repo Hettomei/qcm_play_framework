@@ -1,6 +1,6 @@
 @(qcm: models.Qcm, questions: List[models.Question])
 
-@mainAdmin(){@tags.menu("manageTest")} {
+@mainAdmin(){@tags.menuAdmin("manageTest")} {
 <p><a href="@controllers.admin.routes.QcmController.show(qcm.id)" class="btn btn-primary">Retour au QCM</a></p>
 <h2>Associer des questions</h2>
 @tags.property("Id"                  , qcm.id.toString())

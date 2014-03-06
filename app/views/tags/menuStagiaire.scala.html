@@ -2,10 +2,10 @@
 <p></p>
 <ul class="nav nav-pills nav-stacked">
 	<li class="@(if(active=="availableTests"){"active"})">
-		<a	href="@controllers.routes.StagiairesController.show">QCM disponibles</a>
+		<a	href="@controllers.routes.StagiairesController.index">QCM disponibles</a>
 	</li>
 	<li>
-		<form method="post" action="@routes.StagiairesController.disconnect()">
+		<form method="post" action="@routes.Application.logout()">
 			<input type="submit" value="Déconnexion" class="btn btn-link">
 		</form>
 	</li>

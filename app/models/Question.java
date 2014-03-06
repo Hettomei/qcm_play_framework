@@ -2,14 +2,16 @@ package models;
 
 import java.util.*;
 
-import javax.persistence.*;
-
 import play.data.validation.Constraints.*;
-import play.db.jpa.*;
+import play.db.jpa.JPA;
 
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
-import org.hibernate.criterion.Restrictions;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+
 import exceptions.FrozenException;
+
 @Entity
 @Table(name="questions")
 public class Question{
@@ -31,7 +33,12 @@ public class Question{
 	public List<Qcm> qcms;
 
 	public static List<Question> all() {
-		return JPA.em().createQuery("from Question order by id").getResultList();
+		CriteriaBuilder builder = JPA.em().getCriteriaBuilder();
+		CriteriaQuery<Question> criteria = builder.createQuery( Question.class );
+		Root<Question> questionRoot = criteria.from( Question.class );
+		criteria.select( questionRoot );
+		List<Question> questions = JPA.em().createQuery( criteria ).getResultList();
+		return questions;
 	}
 
 	public static Question findById(Long id) {

@@ -1,5 +1,12 @@
-@(theForm: Form[models.Stagiaire])
+@(stagiaire: models.Stagiaire)
+@main(){@tags.menuStagiaire("manageStagiaire")} {
+<div class="row">
+	<h1>Détail du Stagiaire</h1>
+</div>
 
-@main(){@tags.menuStagiaire("availableTests")} {
+@tags.property("Id"        , stagiaire.id.toString())
+@tags.property("Prenom"    , stagiaire.prenom)
+@tags.property("Nom"       , stagiaire.nom)
+@tags.property("Promotion" , stagiaire.promotion)
 
 }

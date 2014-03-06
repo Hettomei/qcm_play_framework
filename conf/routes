@@ -5,10 +5,12 @@
 ######################### Stagiaires
 
 ### Home page
-GET     /                            controllers.StagiairesController.show()
-GET     /stagiaire/sessiontest       controllers.StagiairesController.sessiontest()
-POST    /stagiaire/sessiontest       controllers.StagiairesController.sessiontest()
-POST    /stagiaire                   controllers.StagiairesController.disconnect()
+GET     /                            controllers.StagiairesController.index()
+#
+# Authentication
+GET     /login                       controllers.Application.login()
+POST    /login                       controllers.Application.authenticate()
+POST    /logout                      controllers.Application.logout()
 
 ######################### Stagiaires
 

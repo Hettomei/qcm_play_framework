@@ -52,4 +52,12 @@ public class Stagiaire{
 		return Evaluation.findQcmsByStagiaire(this);
 	}
 
+	public static Stagiaire authenticate(String id) {
+		return findById( Long.parseLong(id,10));
+	}
+
+	public static Stagiaire authenticate(Long id) {
+		return findById(id);
+	}
+
 }

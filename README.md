@@ -18,3 +18,35 @@ $ play run
 Avec cygwin : // Fonctionne tres mal
 $ cd path/to/myapp
 $ play.bat run
+
+
+Il faut aussi configuerer Mysql.
+Sqlite ne fonctionne pas avec Hibernate (trop compliqué à mettre en place)
+
+Il faut créer la table "play_run_dev"
+$ mysql -u root
+$ create database play_run_dev
+
+Pour que Hibernate créé automatiquement les tables+ contraintes,
+allé dans
+conf\META-INF\persistence.xml
+et modifier
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+par
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+
+Avec cygwin pour lancer mysql
+mysqld_save
+et le classique
+mysql -u root
+
+Si hibernate fail à détruire les table :
+$mysql
+ drop database play_run_dev;
+ou
+ mysql -u root  -e "drop database play_run_dev;"
+
+
+ create database play_run_dev;
+ou
+ mysql -u root  -e "create database play_run_dev;"

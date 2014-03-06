@@ -1,0 +1,12 @@
+@(active: String = "")
+<ul class="nav nav-pills nav-stacked">
+       <li class="@(if(active=="manageTest"){"active"})"><a href="@controllers.admin.routes.QcmController.index">Gestion des QCM</a></li>
+       <li class="@(if(active=="manageQuestion"){"active"})"><a href="@controllers.admin.routes.QuestionsController.index">Gestion des Questions</a></li>
+       <li class="@(if(active=="manageStagiaire"){"active"})"><a href="@controllers.admin.routes.StagiairesController.index">Gestion des Stagiaires</a></li>
+</ul>
+<hr />
+<ul class="nav nav-pills nav-stacked">
+       <li><a href="@controllers.admin.routes.GeneratorController.generateQcms">Genere des QCM</a></li>
+       <li><a href="@controllers.admin.routes.GeneratorController.generateQuestions">Genere des Questions</a></li>
+       <li><a href="@controllers.admin.routes.GeneratorController.generateStagiaires">Genere des Stagiaires</a></li>
+</ul>

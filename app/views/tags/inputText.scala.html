@@ -1,0 +1,8 @@
+@(label: String, field: Form.Field, ttype: String = "text")
+
+<div class="form-group">
+	<label for="@field.name()" class="col-xs-3 control-label">@label</label>
+	<div class="col-xs-3">
+		<input type="@ttype" name="@field.name()" id="@field.name()" value="@field.value()" class="form-control">
+	</div>
+</div>

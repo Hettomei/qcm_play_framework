@@ -4,10 +4,10 @@
 @mainAdmin(){@tags.menuAdmin("manageTest")} {
 <h1>Nouveau Qcm</h1>
 
-@form(controllers.admin.routes.QcmController.save()) {
-	@inputText(theForm("name"),'_showConstraints -> false)
-	@inputText(theForm("description"),'_showConstraints -> false)
-	@inputText(theForm("numberOfQuestions"),'_showConstraints -> false)
-    <input type="submit" value="Create">
+@form(controllers.admin.routes.QcmController.save(), 'class -> "form-horizontal") {
+	@tags.inputText("Nom", theForm("name"))
+	@tags.inputText("Description", theForm("description"))
+	@tags.inputText("Nombre de questions", theForm("numberOfQuestions"))
+	@tags.formSubmit("Créer")
   }
 }

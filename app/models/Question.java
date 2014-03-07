@@ -29,9 +29,6 @@ public class Question{
 	@Column(nullable=false)
 	public Boolean frozen = false;
 
-	@ManyToMany(mappedBy="questions")
-	public List<Qcm> qcms;
-
 	public static List<Question> all() {
 		CriteriaBuilder builder = JPA.em().getCriteriaBuilder();
 		CriteriaQuery<Question> criteria = builder.createQuery( Question.class );

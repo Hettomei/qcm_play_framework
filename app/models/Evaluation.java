@@ -37,6 +37,7 @@ public class Evaluation{
 		FINISHED // all questions answered
 	}
 
+
 	public Evaluation(){
 	}
 

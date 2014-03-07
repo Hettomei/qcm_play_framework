@@ -28,6 +28,9 @@ public class Evaluation{
 	@JoinColumn(name = "qcm_id")
 	public Qcm qcm;
 
+	@OneToMany
+	public List<PickedQuestion> pickedQuestions;
+
 	@Required
 	@Column(nullable=false)
 	public State status = State.NEW ;
@@ -139,6 +142,16 @@ public class Evaluation{
 	}
 
 	public void generateQuestion(){
+		if(pickedQuestions.size() == 0){
+			for(Question q : qcm.questions){
+				PickedQuestion pq = new PickedQuestion();
+				pq.question = q;
+				pq.save();
+				this.pickedQuestions.add(pq);
+			}
+			this.status = State.CONTINUE;
+			JPA.em().merge(this);
+		}
 	}
 
 }

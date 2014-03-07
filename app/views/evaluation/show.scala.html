@@ -1,5 +1,24 @@
 @(eval: models.Evaluation)
 @main(){@tags.menuStagiaire("availableTests")} {
 <h1>Détail de l'évaluation</h1>
+@tags.property("Id"                 , eval.id.toString())
+@tags.property("Stagiaire Id"       , eval.stagiaire.id.toString())
+@tags.property("Qcm Id"             , eval.qcm.id.toString())
+@tags.property("Nombre de question" , eval.pickedQuestions.size().toString())
+@tags.property("Status"             , eval.displayStatus)
 
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>status</th>
+    </tr>
+  </thead>
+  @for(question <- eval.pickedQuestions) {
+  <tr>
+    <td>@question.question.question</td>
+    <td>@question.displayStatus()</td>
+  </tr>
+  }
+</table>
 }

@@ -8,15 +8,19 @@ import static play.data.Form.*;
 import models.*;
 import views.html.*;
 
+import play.db.jpa.Transactional;
 
 public class Application extends Controller {
 
 	// -- Authentication
 	public static class Login {
-		public String id;
+		public String id = "";
 		public String validate() {
+			if(id.equals("")) {
+				return "Ne peut pas être vide";
+			}
 			if(Stagiaire.authenticate(id) == null) {
-				return "Invalid user or password";
+				return "Id stagiaire inexistant";
 			}
 			return null;
 		}
@@ -32,12 +36,15 @@ public class Application extends Controller {
 	/**
 	 * Handle login form submission.
 	 */
+	@Transactional
 	public static Result authenticate() {
-		Form<Login> loginForm = form(Login.class).bindFromRequest();
+		Form<Login> loginForm = Form.form(Login.class).bindFromRequest();
 		if(loginForm.hasErrors()) {
+			flash("warning", "Impossible d'authentifier");
 			return badRequest(views.html.login.render(loginForm));
 		} else {
-			session("id", loginForm.get().id.toString());
+			session("id", loginForm.get().id);
+			flash("info", "Vous êtes connecté");
 			return redirect(routes.StagiairesController.index());
 		}
 	}
@@ -47,7 +54,7 @@ public class Application extends Controller {
 	 */
 	public static Result logout() {
 		session().clear();
-		flash("success", "Vous avez été déconnecté");
+		flash("info", "Vous avez été déconnecté");
 		return redirect(routes.Application.login());
 	}
 

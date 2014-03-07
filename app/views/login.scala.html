@@ -1,6 +1,6 @@
 @(form: Form[Application.Login])
 @main(){@tags.menuStagiaire()} {
-@helper.form(routes.Application.authenticate) {
+@helper.form(routes.Application.authenticate, 'class -> "form-inline") {
 	<h1>Connexion</h1>
 	@if(form.hasGlobalErrors) {
 	<p class="error">
@@ -8,12 +8,11 @@
 	</p>
 	}
 
-	<p><input type="text" name="id" placeholder="id du stagiaire" value="@form("id").value"></p>
-	<p><button type="submit">Login</button></p>
+	<p>
+  <input type="text" name="id" placeholder="id du stagiaire" value="@form("id").value" class="form-control">
+  <button type="submit" class="btn btn-primary">Login</button>
+  </p>
 
 }
 
-<p class="note">
-Try <em>guillaume@@sample.com</em> with <em>secret</em> as password.
-</p>
 }

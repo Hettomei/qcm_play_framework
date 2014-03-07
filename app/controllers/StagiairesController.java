@@ -16,8 +16,11 @@ public class StagiairesController extends Controller {
 
 	@Transactional
 	public static Result index() {
-		Stagiaire stagiaire = Stagiaire.authenticate(request().username());
-		return ok(views.html.stagiaire.index.render(stagiaire));
+		return ok(views.html.stagiaire.index.render(getStagiaire()));
+	}
+
+	public static Stagiaire getStagiaire(){
+		return Stagiaire.authenticate(request().username());
 	}
 
 }

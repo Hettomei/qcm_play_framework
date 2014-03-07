@@ -53,11 +53,13 @@ public class Stagiaire{
 	}
 
 	public static Stagiaire authenticate(String id) {
-		return findById( Long.parseLong(id,10));
-	}
-
-	public static Stagiaire authenticate(Long id) {
-		return findById(id);
+		Long _id;
+		try{
+			_id = Long.parseLong(id,10);
+		}catch(NumberFormatException e){
+			return null;
+		}
+		return Stagiaire.findById(_id);
 	}
 
 }

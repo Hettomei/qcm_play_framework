@@ -45,6 +45,10 @@ public class Evaluation{
 		this.qcm = qcm;
 	}
 
+	public static Evaluation findById(Long id) {
+		return JPA.em().find(Evaluation.class, id);
+	}
+
 	public static List<Evaluation> all() {
 		CriteriaBuilder builder = JPA.em().getCriteriaBuilder();
 		CriteriaQuery<Evaluation> criteria = builder.createQuery( Evaluation.class );
@@ -115,6 +119,25 @@ public class Evaluation{
 
 	public void delete() {
 		JPA.em().remove(this);
+	}
+
+	public String displayStatus(){
+		switch (status) {
+			case NEW:
+				return "Nouveau";
+
+			case CONTINUE:
+				return "En cours";
+
+			case FINISHED:
+				return "Terminé";
+
+			default:
+				return "Nouveau";
+		}
+	}
+
+	public void generateQuestion(){
 	}
 
 }

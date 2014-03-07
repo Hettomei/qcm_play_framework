@@ -1,12 +1,31 @@
 @(stagiaire: models.Stagiaire)
-@main(){@tags.menuStagiaire("manageStagiaire")} {
-<div class="row">
-	<h1>Détail du Stagiaire</h1>
-</div>
+@main(){@tags.menuStagiaire("availableTests")} {
+<h1>Détail du Stagiaire</h1>
 
 @tags.property("Id"        , stagiaire.id.toString())
 @tags.property("Prenom"    , stagiaire.prenom)
 @tags.property("Nom"       , stagiaire.nom)
 @tags.property("Promotion" , stagiaire.promotion)
 
+<h2>QCM dispo</h2>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nom</th>
+			<th>Description</th>
+			<th>Questions à passer</th>
+			<th>État</th>
+		</tr>
+	</thead>
+	@for(evaluation <- stagiaire.getEvaluations()) {
+	<tr>
+		<td><a href="@controllers.routes.EvaluationsController.show(evaluation.id)">@evaluation.id</a></td>
+		<td><a href="@controllers.routes.EvaluationsController.show(evaluation.id)">@evaluation.qcm.name</a></td>
+		<td>@evaluation.qcm.description</td>
+		<td>@evaluation.qcm.numberOfQuestions</td>
+		<td>@evaluation.displayStatus()</td>
+	</tr>
+	}
+</table>
 }

@@ -12,6 +12,7 @@ GET     /login                       controllers.Application.login()
 POST    /login                       controllers.Application.authenticate()
 POST    /logout                      controllers.Application.logout()
 
+GET     /evaluations/:id/show        controllers.EvaluationsController.show(id:Long)
 ######################### Stagiaires
 
 ######################### Admin
